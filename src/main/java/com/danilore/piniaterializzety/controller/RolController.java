@@ -6,7 +6,7 @@ package com.danilore.piniaterializzety.controller;
 
 import com.danilore.piniaterializzety.clases.TextPrompt;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.danilore.piniaterializzety.views.VRoles;
+import com.danilore.piniaterializzety.views.usuario.VRoles;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -15,11 +15,11 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import com.danilore.piniaterializzety.models.Permiso;
-import com.danilore.piniaterializzety.models.Rol;
-import com.danilore.piniaterializzety.models.Usuario;
+import com.danilore.piniaterializzety.models.usuario.Permiso;
+import com.danilore.piniaterializzety.models.usuario.Rol;
+import com.danilore.piniaterializzety.models.usuario.Usuario;
 import com.danilore.piniaterializzety.services.RolService;
-import com.danilore.piniaterializzety.views.VRolesListado;
+import com.danilore.piniaterializzety.views.usuario.VRolesListado;
 
 /**
  *

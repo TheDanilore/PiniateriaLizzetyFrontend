@@ -17,13 +17,13 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
-import com.danilore.piniaterializzety.models.Departamento;
-import com.danilore.piniaterializzety.models.Distrito;
-import com.danilore.piniaterializzety.models.GeneroEnum;
-import com.danilore.piniaterializzety.models.Persona;
-import com.danilore.piniaterializzety.models.Provincia;
-import com.danilore.piniaterializzety.models.TipoDocumentoIdentidad;
-import com.danilore.piniaterializzety.views.VPersona;
+import com.danilore.piniaterializzety.models.persona.Departamento;
+import com.danilore.piniaterializzety.models.persona.Distrito;
+import com.danilore.piniaterializzety.models.persona.enums.GeneroEnum;
+import com.danilore.piniaterializzety.models.persona.Persona;
+import com.danilore.piniaterializzety.models.persona.Provincia;
+import com.danilore.piniaterializzety.models.persona.TipoDocumentoIdentidad;
+import com.danilore.piniaterializzety.views.persona.VPersona;
 
 /**
  *

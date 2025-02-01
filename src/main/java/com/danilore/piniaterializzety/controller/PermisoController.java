@@ -11,9 +11,9 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import com.danilore.piniaterializzety.models.Permiso;
-import com.danilore.piniaterializzety.models.Usuario;
-import com.danilore.piniaterializzety.views.VPermisos;
+import com.danilore.piniaterializzety.models.usuario.Permiso;
+import com.danilore.piniaterializzety.models.usuario.Usuario;
+import com.danilore.piniaterializzety.views.usuario.VPermisos;
 
 /**
  *

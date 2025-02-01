@@ -20,10 +20,10 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import com.danilore.piniaterializzety.models.Permiso;
-import com.danilore.piniaterializzety.models.Usuario;
-import com.danilore.piniaterializzety.views.VPermisos;
-import com.danilore.piniaterializzety.views.VPermisosListado1;
+import com.danilore.piniaterializzety.models.usuario.Permiso;
+import com.danilore.piniaterializzety.models.usuario.Usuario;
+import com.danilore.piniaterializzety.views.usuario.VPermisos;
+import com.danilore.piniaterializzety.views.usuario.VPermisosListado1;
 
 /**
  *

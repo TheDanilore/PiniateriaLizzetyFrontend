@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.prefs.Preferences;
 import javax.swing.JOptionPane;
 import com.danilore.piniaterializzety.views.VLogin;
-import com.danilore.piniaterializzety.models.Usuario;
+import com.danilore.piniaterializzety.models.usuario.Usuario;
 import com.danilore.piniaterializzety.views.VPrincipal;
 
 /**

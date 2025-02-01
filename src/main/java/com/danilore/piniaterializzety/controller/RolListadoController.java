@@ -9,7 +9,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.danilore.piniaterializzety.views.VRoles;
+import com.danilore.piniaterializzety.views.usuario.VRoles;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -21,10 +21,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.ListModel;
 import com.danilore.piniaterializzety.models.EstadoEnum;
-import com.danilore.piniaterializzety.models.Permiso;
-import com.danilore.piniaterializzety.models.Rol;
-import com.danilore.piniaterializzety.models.Usuario;
-import com.danilore.piniaterializzety.views.VRolesListado;
+import com.danilore.piniaterializzety.models.usuario.Permiso;
+import com.danilore.piniaterializzety.models.usuario.Rol;
+import com.danilore.piniaterializzety.models.usuario.Usuario;
+import com.danilore.piniaterializzety.views.usuario.VRolesListado;
 
 /**
  *

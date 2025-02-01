@@ -9,14 +9,14 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.danilore.piniaterializzety.views.VUsuarios;
+import com.danilore.piniaterializzety.views.usuario.VUsuarios;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
 import javax.swing.table.DefaultTableModel;
 import org.mindrot.jbcrypt.BCrypt;
-import com.danilore.piniaterializzety.models.Usuario;
+import com.danilore.piniaterializzety.models.usuario.Usuario;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
@@ -25,7 +25,7 @@ import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import com.danilore.piniaterializzety.models.EstadoEnum;
-import com.danilore.piniaterializzety.models.Rol;
+import com.danilore.piniaterializzety.models.usuario.Rol;
 
 /**
  *

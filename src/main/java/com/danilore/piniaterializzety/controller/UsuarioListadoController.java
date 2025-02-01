@@ -22,10 +22,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.ListModel;
 import com.danilore.piniaterializzety.models.EstadoEnum;
-import com.danilore.piniaterializzety.models.Rol;
-import com.danilore.piniaterializzety.models.Usuario;
-import com.danilore.piniaterializzety.views.VUsuarios;
-import com.danilore.piniaterializzety.views.VUsuariosListado;
+import com.danilore.piniaterializzety.models.usuario.Rol;
+import com.danilore.piniaterializzety.models.usuario.Usuario;
+import com.danilore.piniaterializzety.views.usuario.VUsuarios;
+import com.danilore.piniaterializzety.views.usuario.VUsuariosListado;
 
 /**
  *

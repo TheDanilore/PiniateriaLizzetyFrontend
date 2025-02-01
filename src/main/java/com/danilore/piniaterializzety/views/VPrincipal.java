@@ -5,12 +5,18 @@
 package com.danilore.piniaterializzety.views;
 
 
+import com.danilore.piniaterializzety.views.persona.VPersona;
+import com.danilore.piniaterializzety.views.usuario.VUsuariosListado;
+import com.danilore.piniaterializzety.views.usuario.VPermisos;
+import com.danilore.piniaterializzety.views.usuario.VUsuarios;
+import com.danilore.piniaterializzety.views.usuario.VRolesListado;
+import com.danilore.piniaterializzety.views.usuario.VRoles;
 import com.danilore.piniaterializzety.controller.LoginController;
 import com.danilore.piniaterializzety.controller.PermisoController;
 import com.danilore.piniaterializzety.controller.PersonaController;
 import com.danilore.piniaterializzety.controller.RolListadoController;
 import com.danilore.piniaterializzety.controller.UsuarioListadoController;
-import com.danilore.piniaterializzety.models.Usuario;
+import com.danilore.piniaterializzety.models.usuario.Usuario;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -89,18 +95,20 @@ public class VPrincipal extends javax.swing.JFrame {
 
         jMenu4.setText("Gestion de Entradas");
         jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenu4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu4);
 
         jMenu1.setText("Gestion de Salidas");
+        jMenu1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Productos");
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jMenuBar1.add(jMenu3);
 
         menuPersonas.setText("Personas");
         menuPersonas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        menuPersonas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuPersonas.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
 
         menuItemGestionPersonas.setText("Gestión de Personas");
         menuItemGestionPersonas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -115,7 +123,7 @@ public class VPrincipal extends javax.swing.JFrame {
 
         menuUsuarios.setText("Usuarios");
         menuUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        menuUsuarios.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menuUsuarios.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menuUsuarios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuUsuariosActionPerformed(evt);
@@ -153,7 +161,7 @@ public class VPrincipal extends javax.swing.JFrame {
 
         menu_cerrarsesion.setText("Cerrar Sesión");
         menu_cerrarsesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        menu_cerrarsesion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menu_cerrarsesion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         menu_cerrarsesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menu_cerrarsesionActionPerformed(evt);
