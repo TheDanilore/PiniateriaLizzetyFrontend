@@ -45,7 +45,6 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="e9" green="e9" red="ec" type="rgb"/>
         </Property>
-        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>
@@ -80,7 +79,7 @@
                           <EmptySpace min="-2" pref="279" max="-2" attributes="0"/>
                           <Component id="jLabel9" min="-2" pref="420" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                          <Component id="txtIdRolesUsuario" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtId" min="-2" pref="20" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="49" max="32767" attributes="0"/>
@@ -107,7 +106,7 @@
                           <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                          <Component id="txtIdRolesUsuario" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="txtId" min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="jLabel9" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -156,7 +155,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtIdRolesUsuario">
+        <Component class="javax.swing.JTextField" name="txtId">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="72" size="13" style="0"/>
@@ -180,7 +179,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="tableRol">
+            <Component class="javax.swing.JTable" name="table">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="14" style="0"/>
@@ -201,7 +200,7 @@
                 <Property name="verifyInputWhenFocusTarget" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableRolMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tableMouseClicked"/>
               </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

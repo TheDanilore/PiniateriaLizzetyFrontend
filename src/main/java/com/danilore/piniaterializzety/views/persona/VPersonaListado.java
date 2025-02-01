@@ -63,6 +63,7 @@ public class VPersonaListado extends javax.swing.JInternalFrame {
         lblPagina = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         btnSiguiente = new javax.swing.JLabel();
+        txtIdPersona = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -317,6 +318,11 @@ public class VPersonaListado extends javax.swing.JInternalFrame {
             .addComponent(btnSiguiente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        txtIdPersona.setFont(new java.awt.Font("Arial", 0, 13)); // NOI18N
+        txtIdPersona.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtIdPersona.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtIdPersona.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -330,6 +336,8 @@ public class VPersonaListado extends javax.swing.JInternalFrame {
                             .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(328, 328, 328)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(42, 42, 42)
+                        .addComponent(txtIdPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -393,7 +401,9 @@ public class VPersonaListado extends javax.swing.JInternalFrame {
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdPersona, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -500,5 +510,6 @@ public class VPersonaListado extends javax.swing.JInternalFrame {
     public javax.swing.JLabel lblPagina;
     public javax.swing.JTable tablePersona1;
     public javax.swing.JTextField txtBuscarPorId1;
+    public javax.swing.JTextField txtIdPersona;
     // End of variables declaration//GEN-END:variables
 }

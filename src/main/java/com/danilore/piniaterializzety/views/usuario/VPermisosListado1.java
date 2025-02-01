@@ -63,7 +63,7 @@ public class VPermisosListado1 extends javax.swing.JInternalFrame {
         jLabel10.setForeground(new java.awt.Color(51, 153, 0));
         jLabel10.setText("Reportes");
 
-        jPanel7.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel7.setBackground(new java.awt.Color(19, 227, 19));
 
         btnExcel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnExcel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -91,7 +91,7 @@ public class VPermisosListado1 extends javax.swing.JInternalFrame {
             }
         });
 
-        jPanel9.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel9.setBackground(new java.awt.Color(19, 227, 19));
 
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
@@ -176,7 +176,7 @@ public class VPermisosListado1 extends javax.swing.JInternalFrame {
             .addComponent(btnSiguiente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jPanel4.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel4.setBackground(new java.awt.Color(19, 227, 19));
 
         btnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
@@ -201,7 +201,7 @@ public class VPermisosListado1 extends javax.swing.JInternalFrame {
             .addComponent(btnNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel3.setBackground(new java.awt.Color(19, 227, 19));
 
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnActualizar.setForeground(new java.awt.Color(255, 255, 255));

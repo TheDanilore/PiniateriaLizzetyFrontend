@@ -52,29 +52,20 @@ public final class UsuarioController {
         this.vista = v;
         configurarEventos();
 
-        vista.lblPagina.setText("Página: " + (paginaActual + 1));
-
         //Deshabilitar los botones
         this.vista.txtIdUsuario.setVisible(false);
         this.vista.btnActualizar.setEnabled(false);
-        this.vista.btnDarBaja.setEnabled(false);
-        this.vista.btnActivar.setEnabled(false);
-        this.vista.btnEliminar.setEnabled(false);
 
         // Habilitar botones según permisos
         configurarBotonesSegunPermisos(usuario);
 
         llenarRoles();
-        limpiarTable();
-        listarUsuarios();
         marcaAgua();
     }
 
     private void configurarBotonesSegunPermisos(Usuario usuario) {
         // Verificar si el usuario tiene el permiso para "Eliminar"
-        if (!usuario.tienePermiso("GESTIONAR_USUARIOS_ADMIN")) {
-            vista.btnEliminar.setVisible(false); // Ocultar el botón si no tiene el permiso
-        }
+
 
         // Puedes agregar más verificaciones para otros botones si es necesario
     }
@@ -94,25 +85,6 @@ public final class UsuarioController {
             }
         });
 
-        vista.btnDarBaja.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cambiarEstadoUsuario("Inactivo");
-            }
-        });
-
-        vista.btnActivar.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cambiarEstadoUsuario("Activo");
-            }
-        });
-        vista.btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                eliminarUsuario();
-            }
-        });
 
         vista.btnNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
@@ -121,67 +93,8 @@ public final class UsuarioController {
             }
         });
 
-        vista.btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                enModoBusqueda = true; // Activar modo búsqueda
-                criterioBusqueda = vista.txtBuscar.getText().trim(); // Guardar el criterio actual
-                paginaActual = 0; // Reiniciar a la primera página
-                listarUsuariosPorCriterio();
-            }
-        });
 
-        vista.tableUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                seleccionarUsuarioDeTabla();
-            }
-        });
 
-        //Botones de paginacion
-        vista.btnAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                anteriorPagina();
-            }
-        });
-
-        vista.btnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                siguientePagina();
-            }
-        });
-
-    }
-
-    // -------- Metodos de Paginacion ----------------
-    private void anteriorPagina() {
-        if (paginaActual == 0) {
-            mostrarMensaje("Ya estás en la primera página.");
-            return;
-        }
-        paginaActual--;
-        if (enModoBusqueda) {
-            listarUsuariosPorCriterio();
-        } else {
-            listarUsuarios();
-        }
-        vista.lblPagina.setText("Página: " + (paginaActual + 1));
-    }
-
-    private void siguientePagina() {
-        if (esUltimaPagina) {
-            mostrarMensaje("Ya estás en la última página.");
-            return;
-        }
-        paginaActual++;
-        if (enModoBusqueda) {
-            listarUsuariosPorCriterio();
-        } else {
-            listarUsuarios();
-        }
-        vista.lblPagina.setText("Página: " + (paginaActual + 1));
     }
 
     //--------------------------------------------
@@ -200,39 +113,6 @@ public final class UsuarioController {
 
         int[] selectedIndices = indices.stream().mapToInt(Integer::intValue).toArray();
         vista.jlistRolUser.setSelectedIndices(selectedIndices);
-    }
-
-    private void seleccionarUsuarioDeTabla() {
-        int filaSeleccionada = vista.tableUsuario.getSelectedRow();
-        if (filaSeleccionada >= 0) {
-            Usuario usuario = obtenerUsuarioDesdeFila(filaSeleccionada);
-            vista.txtIdUsuario.setText(String.valueOf(usuario.getId()));
-            vista.txtNombreUsuario.setText(usuario.getNombre());
-            vista.txtUsernameUsuario.setText(usuario.getEmail());
-
-            // Mostrar roles seleccionados
-            mostrarRolesSeleccionados(usuario);
-
-            // Habilitar botones según el estado del usuario
-            if (usuario.getEstado() == EstadoEnum.ACTIVO) {
-                vista.btnDarBaja.setEnabled(true);
-                vista.btnActivar.setEnabled(false);
-            } else if (usuario.getEstado() == EstadoEnum.INACTIVO) {
-                vista.btnDarBaja.setEnabled(false);
-                vista.btnActivar.setEnabled(true);
-            }
-
-            // Habilitar botón actualizar siempre que un usuario sea seleccionado
-            vista.btnActualizar.setEnabled(true);
-            this.vista.btnEliminar.setEnabled(true);
-        }
-    }
-
-    private Usuario obtenerUsuarioDesdeFila(int fila) {
-        if (fila >= 0 && fila < usuariosCargados.size()) {
-            return usuariosCargados.get(fila); // Recupera los datos completos de la persona desde la lista
-        }
-        return null;
     }
 
     public void llenarRoles() {
@@ -269,119 +149,7 @@ public final class UsuarioController {
         }
     }
 
-    public void listarUsuariosPorCriterio() {
-        try {
-            // Construir la URL con el criterio de búsqueda
-            String url = BASE_URL + "/buscar?criterio=" + URLEncoder.encode(criterioBusqueda, StandardCharsets.UTF_8)
-                    + "&page=" + paginaActual + "&size=" + tamanioPagina;
-
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(url))
-                    .GET()
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() == 200) {
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.registerModule(new JavaTimeModule());
-                JsonNode rootNode = mapper.readTree(response.body());
-
-                // Verificar si el nodo 'content' existe
-                JsonNode contentNode = rootNode.get("content");
-                if (contentNode == null || !contentNode.isArray()) {
-                    JOptionPane.showMessageDialog(vista, "No se encontraron resultados para el criterio especificado.");
-                    return;
-                }
-
-                // Procesar los usuarios
-                usuariosCargados = contentNode.traverse(mapper)
-                        .readValueAs(new TypeReference<List<Usuario>>() {
-                        });
-
-                // Actualizar la tabla
-                DefaultTableModel model = (DefaultTableModel) vista.tableUsuario.getModel();
-                model.setRowCount(0);
-                for (Usuario usuario : usuariosCargados) {
-                    // Obtener las descripciones de los roles como una sola cadena
-                    String rolesDescripcion = usuario.getRoles().stream()
-                            .map(Rol::getDescripcion)
-                            .reduce((desc1, desc2) -> desc1 + ", " + desc2) // Unir descripciones con coma
-                            .orElse("Sin roles");
-
-
-                    model.addRow(new Object[]{
-                        usuario.getId(),
-                        usuario.getNombre(),
-                        usuario.getEmail(),
-                        usuario.getPassword(),
-                        rolesDescripcion,
-                        usuario.getEstado().name()
-                    });
-                }
-
-                // Actualizar la información de paginación
-                esUltimaPagina = rootNode.path("last").asBoolean(false);
-                vista.lblPagina.setText("Página: " + (paginaActual + 1));
-            } else {
-                JOptionPane.showMessageDialog(vista, "Error al listar usuarios. Código: " + response.statusCode());
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(vista, "Error al listar usuarios: " + e.getMessage());
-        }
-    }
-
     //-----------------------  CRUD USUARIO -----------------------
-    public void listarUsuarios() {
-
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL + "?page=" + paginaActual + "&size=" + tamanioPagina))
-                    .GET()
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() == 200) {
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.registerModule(new JavaTimeModule()); // Soporte para LocalDate
-                JsonNode rootNode = mapper.readTree(response.body());
-
-                usuariosCargados = rootNode.get("content") // Acceder al array dentro de "content"
-                        .traverse(mapper)
-                        .readValueAs(new TypeReference<List<Usuario>>() {
-                        });
-
-                DefaultTableModel model = (DefaultTableModel) vista.tableUsuario.getModel();
-                model.setRowCount(0);
-                for (Usuario usuario : usuariosCargados) {
-                    // Obtener las descripciones de los roles como una sola cadena
-                    String rolesDescripcion = usuario.getRoles().stream()
-                            .map(Rol::getDescripcion)
-                            .reduce((desc1, desc2) -> desc1 + ", " + desc2) // Unir descripciones con coma
-                            .orElse("Sin roles");
-
-                    model.addRow(new Object[]{
-                        usuario.getId(),
-                        usuario.getNombre(),
-                        usuario.getEmail(),
-                        usuario.getPassword(),
-                        rolesDescripcion, // Mostrar las descripciones de los roles
-                        usuario.getEstado().name()
-                    });
-                }
-
-                // Actualizar el estado de si es la última página
-                esUltimaPagina = rootNode.get("last").asBoolean();
-            } else {
-                JOptionPane.showMessageDialog(vista, "Error al listar usuarios. Código: " + response.statusCode());
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(vista, "Error al listar usuarios: " + e.getMessage());
-        }
-    }
 
     private void guardarUsuario() {
         try {
@@ -425,7 +193,6 @@ public final class UsuarioController {
 
             if (response.statusCode() == 201) {
                 JOptionPane.showMessageDialog(vista, "Usuario guardado con éxito.");
-                listarUsuarios();
                 limpiarCampos();
             } else {
                 JOptionPane.showMessageDialog(vista, "Error al guardar usuario. Error: " + response.body());
@@ -473,38 +240,12 @@ public final class UsuarioController {
 
             if (response.statusCode() == 200) {
                 JOptionPane.showMessageDialog(vista, "Usuario actualizado con éxito.");
-                listarUsuarios();
                 limpiarCampos();
             } else {
                 JOptionPane.showMessageDialog(vista, "Error al actualizar usuario. Error: " + response.body());
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(vista, "Error al actualizar usuario: " + e.getMessage());
-        }
-    }
-
-    private void cambiarEstadoUsuario(String nuevoEstado) {
-        try {
-            int id = Integer.parseInt(vista.txtIdUsuario.getText());
-
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL + "/cambiar-estado/" + id + "?nuevoEstado=" + nuevoEstado))
-                    .header("Content-Type", "application/json")
-                    .method("PATCH", HttpRequest.BodyPublishers.noBody()) // Usar .method() para PATCH
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() == 200) {
-                JOptionPane.showMessageDialog(vista, "Estado del usuario cambiado a " + nuevoEstado + ".");
-                listarUsuarios();
-                limpiarCampos();
-            } else {
-                JOptionPane.showMessageDialog(vista, "Error al cambiar estado. Error: " + response.body());
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(vista, "Error al cambiar estado: " + e.getMessage());
         }
     }
 
@@ -523,7 +264,6 @@ public final class UsuarioController {
             if (response.statusCode() == 200) {
                 mostrarMensaje("Usuario eliminado con éxito.");
                 limpiarCampos();
-                listarUsuarios();
             } else {
                 mostrarError("Error al eliminar usuario. Error: " + response.body());
             }
@@ -550,7 +290,6 @@ public final class UsuarioController {
         criterioBusqueda = ""; // Limpiar el criterio de búsqueda
         paginaActual = 0; // Reiniciar a la primera página
         limpiarCampos();
-        listarUsuarios();
     }
 
     public void limpiarCampos() {
@@ -562,13 +301,6 @@ public final class UsuarioController {
 
         // Deshabilitar botones
         vista.btnActualizar.setEnabled(false);
-        vista.btnDarBaja.setEnabled(false);
-        vista.btnActivar.setEnabled(false);
-    }
-
-    public void limpiarTable() {
-        DefaultTableModel model = (DefaultTableModel) vista.tableUsuario.getModel();
-        model.setRowCount(0);
     }
 
     public boolean camposValidos() {

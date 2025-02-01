@@ -3,13 +3,11 @@ package com.danilore.piniaterializzety.controller;
 import com.danilore.piniaterializzety.clases.TextPrompt;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -50,8 +48,6 @@ public final class PersonaController {
 
     public PersonaController(VPersona v) {
         this.vista = v;
-
-        vista.lblPagina.setText("Página: " + (paginaActual+1));
         // Ocultamos el txtIdPersona
         this.vista.txtIdPersona.setVisible(false);
 
@@ -62,13 +58,11 @@ public final class PersonaController {
         cargarGeneros();
         cargarTiposDocumento();
         cargarDepartamentos();
-        listarPersonas();
         limpiarCampos();
         marcaAgua();
 
         // Botones inactivos al inicio
-        this.vista.btnActualizar.setEnabled(false);
-        this.vista.btnEliminar.setEnabled(false);
+        this.vista.btnActualizar1.setEnabled(false);
     }
 
     private void configurarEventos() {
@@ -79,250 +73,12 @@ public final class PersonaController {
             }
         });
 
-        vista.btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                actualizarPersona();
-            }
-        });
-
-        vista.btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                eliminarPersona();
-            }
-        });
-
-        vista.btnNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nuevaPersona();
-            }
-        });
-        vista.btnBuscarPorId.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                bucarPorId();
-            }
-        });
-
-        vista.tablePersona.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                seleccionarPersonaDeTabla();
-            }
-        });
-
-        //Botones de paginacion
-        vista.btnAnterior.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                anteriorPagina();
-            }
-        });
-
-        vista.btnSiguiente.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                siguientePagina();
-            }
-        });
-        
         vista.cboDepartamento.addActionListener(evt -> onDepartamentoChange());
         vista.cboProvincia.addActionListener(evt -> onProvinciaChange());
 
     }
 
-    // -------- Metodos de Paginacion ----------------
-    private void anteriorPagina() {
-        if (paginaActual == 0) {
-            mostrarMensaje("Ya estás en la primera página.");
-            return;
-        }
-        paginaActual--;
-        listarPersonas();
-        vista.lblPagina.setText("Página: " + (paginaActual+1));
-
-    }
-
-    private void siguientePagina() {
-        if (esUltimaPagina) {
-            mostrarMensaje("Ya estás en la última página.");
-            return;
-        }
-        paginaActual++;
-        listarPersonas();
-        vista.lblPagina.setText("Página: " + (paginaActual+1));
-    }
-
-    //--------------------------------------------
-    private void seleccionarPersonaDeTabla() {
-        int filaSeleccionada = vista.tablePersona.getSelectedRow();
-        if (filaSeleccionada >= 0) {
-            Persona persona = obtenerPersonaDesdeFila(filaSeleccionada);
-            vista.txtIdPersona.setText(String.valueOf(persona.getId()));
-            vista.txtNombres.setText(String.valueOf(persona.getNombres()));
-            vista.txtApellidos.setText(String.valueOf(persona.getApellidos()));
-            vista.txtDireccion.setText(String.valueOf(persona.getDireccion()));
-            vista.txtCorreo.setText(String.valueOf(persona.getCorreo()));
-            vista.txtTelefono.setText(String.valueOf(persona.getTelefono()));
-
-            // Mostrar tipo documento identidad de la persona en combobox
-            vista.cboTipoDocI.setSelectedItem(persona.getTipoDocumentoIdentidad());
-
-            vista.txtNumeroDoc.setText(String.valueOf(persona.getNumeroDocumento()));
-
-            // Mostrar departamento de la persona en combobox
-            vista.cboDepartamento.setSelectedItem(departamentosCargados.stream()
-                    .filter(dep -> dep.getIdDepartamento() == persona.getDepartamento().getIdDepartamento())
-                    .findFirst().orElse(null));
-
-            // Mostrar provincia de la persona en combobox
-            vista.cboProvincia.setSelectedItem(provinciasCargados.stream()
-                    .filter(pro -> pro.getIdProvincia() == persona.getProvincia().getIdProvincia())
-                    .findFirst().orElse(null));
-            // Mostrar distrito de la persona en combobox
-            vista.cboDistrito.setSelectedItem(distritosCargados.stream()
-                    .filter(dis -> dis.getIdDistrito() == persona.getDistrito().getIdDistrito())
-                    .findFirst().orElse(null));
-
-            if (persona.getFechaNacimiento() != null) {
-                vista.jCalendarCbxFechaNacimiento.setDate(
-                        Date.from(persona.getFechaNacimiento().atStartOfDay(ZoneId.systemDefault()).toInstant())
-                );
-            } else {
-                vista.jCalendarCbxFechaNacimiento.setDate(null);
-            }
-
-            // Mostrar genero de la persona en combobox
-            vista.cboGenero.setSelectedItem(String.valueOf(persona.getGenero()));
-
-            vista.txtLugarNacimiento.setText(String.valueOf(persona.getLugarNacimiento()));
-
-            // Habilitar botón actualizar siempre que un usuario sea seleccionado
-            vista.btnActualizar.setEnabled(true);
-            vista.btnEliminar.setEnabled(true);
-        }
-    }
-
-    private Persona obtenerPersonaDesdeFila(int fila) {
-        if (fila >= 0 && fila < personasCargadas.size()) {
-            return personasCargadas.get(fila); // Recupera los datos completos de la persona desde la lista
-        }
-        return null;
-    }
-
-    private void bucarPorId() {
-        Long idPersona = Long.valueOf(vista.txtBuscarPorId.getText()); // Obtén el ID desde la tabla
-
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL + "/" + idPersona))
-                    .GET()
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-            if (response.statusCode() == 200) {
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.registerModule(new JavaTimeModule()); // Soporte para LocalDate
-                Persona persona = mapper.readValue(response.body(), Persona.class);
-
-                // Llenar los campos con los datos completos de la persona
-                vista.txtIdPersona.setText(String.valueOf(persona.getId()));
-                vista.txtNombres.setText(persona.getNombres());
-                vista.txtApellidos.setText(persona.getApellidos());
-                vista.txtDireccion.setText(persona.getDireccion());
-                vista.txtCorreo.setText(persona.getCorreo());
-                vista.txtTelefono.setText(persona.getTelefono());
-                vista.cboTipoDocI.setSelectedItem(persona.getTipoDocumentoIdentidad());
-                vista.txtNumeroDoc.setText(persona.getNumeroDocumento());
-                // Mostrar departamento de la persona en combobox
-                vista.cboDepartamento.setSelectedItem(departamentosCargados.stream()
-                        .filter(dep -> dep.getIdDepartamento() == persona.getDepartamento().getIdDepartamento())
-                        .findFirst().orElse(null));
-
-                // Mostrar provincia de la persona en combobox
-                vista.cboProvincia.setSelectedItem(provinciasCargados.stream()
-                        .filter(pro -> pro.getIdProvincia() == persona.getProvincia().getIdProvincia())
-                        .findFirst().orElse(null));
-                // Mostrar distrito de la persona en combobox
-                vista.cboDistrito.setSelectedItem(distritosCargados.stream()
-                        .filter(dis -> dis.getIdDistrito() == persona.getDistrito().getIdDistrito())
-                        .findFirst().orElse(null));
-
-                if (persona.getFechaNacimiento() != null) {
-                    vista.jCalendarCbxFechaNacimiento.setDate(
-                            Date.from(persona.getFechaNacimiento().atStartOfDay(ZoneId.systemDefault()).toInstant())
-                    );
-                } else {
-                    vista.jCalendarCbxFechaNacimiento.setDate(null);
-                }
-
-                vista.cboGenero.setSelectedItem(persona.getGenero() != null ? persona.getGenero().name() : "");
-                vista.txtLugarNacimiento.setText(persona.getLugarNacimiento());
-
-                // Habilitar botones
-                vista.btnActualizar.setEnabled(true);
-                vista.btnEliminar.setEnabled(true);
-            } else {
-                mostrarError("Error al buscar persona. Error: " + response.body());
-            }
-        } catch (Exception e) {
-            mostrarError("Error inesperado al obtener datos de la persona: " + e.getMessage());
-        }
-    }
-
     // ------------------ CRUD PERSONA ------------------
-    public void listarPersonas() {
-        try {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL + "?page=" + paginaActual + "&size=" + tamanioPagina))
-                    .GET()
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() == 200) {
-                ObjectMapper mapper = new ObjectMapper();
-                mapper.registerModule(new JavaTimeModule()); // Soporte para LocalDate
-                JsonNode rootNode = mapper.readTree(response.body());
-
-                personasCargadas = rootNode.get("content") // Acceder al array dentro de "content"
-                        .traverse(mapper)
-                        .readValueAs(new TypeReference<List<Persona>>() {
-                        });
-
-                DefaultTableModel model = (DefaultTableModel) vista.tablePersona.getModel();
-                model.setRowCount(0); // Limpia la tabla
-                for (Persona persona : personasCargadas) {
-                    model.addRow(new Object[]{
-                        persona.getId(),
-                        persona.getNombres(),
-                        persona.getApellidos(),
-                        persona.getDireccion(),
-                        persona.getDistrito().getDescripcion()
-                        + " - " + persona.getProvincia().getDescripcion()
-                        + " - " + persona.getDepartamento().getDescripcion(), //Descripcion del destrito
-                        persona.getTelefono(),
-                        persona.getCorreo(),
-                        persona.getFechaNacimiento() != null ? persona.getFechaNacimiento().toString() : "",
-                        persona.getGenero() != null ? persona.getGenero().name() : "",
-                        persona.getLugarNacimiento()
-                    });
-                }
-
-                // Actualizar el estado de si es la última página
-                esUltimaPagina = rootNode.get("last").asBoolean();
-            } else {
-                mostrarError("Error al listar personas. Error: " + response.body());
-            }
-        } catch (Exception e) {
-            mostrarError("Error inesperado al listar personas: " + e.getMessage());
-        }
-    }
-
     public void guardarPersona() {
         try {
             if (!camposValidos()) {
@@ -357,7 +113,6 @@ public final class PersonaController {
                 } catch (Exception e) {
                     mostrarMensaje("Persona registrada correctamente.");
                 }
-                listarPersonas();
                 limpiarCampos();
             } else {
                 mostrarError("Error al guardar persona. Error: " + response.body());
@@ -393,37 +148,12 @@ public final class PersonaController {
 
             if (response.statusCode() == 200) {
                 mostrarMensaje("Persona actualizada correctamente.");
-                listarPersonas();
                 limpiarCampos();
             } else {
                 mostrarError("Error al actualizar persona. Error: " + response.body());
             }
         } catch (Exception e) {
             mostrarError("Error inesperado al actualizar persona: " + e.getMessage());
-        }
-    }
-
-    public void eliminarPersona() {
-        try {
-            Long id = Long.valueOf(vista.txtIdPersona.getText());
-
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL + "/" + id))
-                    .DELETE()
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() == 200) {
-                mostrarMensaje("Persona eliminada con éxito.");
-                limpiarCampos();
-                listarPersonas();
-            } else {
-                mostrarError("Error al eliminar persona. Error: " + response.body());
-            }
-        } catch (Exception e) {
-            mostrarError("Error inesperado al eliminar persona: " + e.getMessage());
         }
     }
 
@@ -470,11 +200,6 @@ public final class PersonaController {
     }
 
     // ------------------ UTILITARIOS ------------------
-    public void limpiarTable() {
-        DefaultTableModel model = (DefaultTableModel) vista.tablePersona.getModel();
-        model.setRowCount(0);
-    }
-
     private void limpiarCampos() {
         vista.txtIdPersona.setText("");
         vista.txtNombres.setText("");
@@ -490,8 +215,7 @@ public final class PersonaController {
         vista.txtLugarNacimiento.setText("");
 
         //Deshabilitar botones
-        vista.btnActualizar.setEnabled(false);
-        vista.btnEliminar.setEnabled(false);
+        vista.btnActualizar1.setEnabled(false);
     }
 
     private boolean camposValidos() {
@@ -514,7 +238,6 @@ public final class PersonaController {
 
     private void nuevaPersona() {
         limpiarCampos();
-        listarPersonas();
     }
 
     private void mostrarMensaje(String mensaje) {
@@ -533,7 +256,6 @@ public final class PersonaController {
         TextPrompt telefono = new TextPrompt("N° de Telefono", vista.txtTelefono);
         TextPrompt nDocumento = new TextPrompt("N° de Documento", vista.txtNumeroDoc);
         TextPrompt lugarNacimiento = new TextPrompt("Lugar donde nació", vista.txtNumeroDoc);
-        TextPrompt buscarPorIdPersona = new TextPrompt("Id Persona", vista.txtBuscarPorId);
     }
 
     // ------------------ CARGAR COMBOS ------------------

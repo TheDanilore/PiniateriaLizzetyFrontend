@@ -107,7 +107,7 @@ public class VRoles extends javax.swing.JInternalFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 280, 150));
 
-        jPanel2.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel2.setBackground(new java.awt.Color(19, 227, 19));
 
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,7 +153,7 @@ public class VRoles extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, -1, -1));
 
-        jPanel4.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel4.setBackground(new java.awt.Color(19, 227, 19));
 
         btnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(255, 255, 255));

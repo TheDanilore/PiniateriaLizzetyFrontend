@@ -1,7 +1,4 @@
-
 package com.danilore.piniaterializzety.views.producto;
-
-
 
 /**
  *
@@ -13,16 +10,15 @@ public class VUnidadMedidaListado extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        txtIdRolesUsuario = new javax.swing.JTextField();
+        txtId = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableRol = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jLabel10 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnActualizar = new javax.swing.JLabel();
@@ -52,7 +48,6 @@ public class VUnidadMedidaListado extends javax.swing.JInternalFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBackground(new java.awt.Color(236, 233, 233));
-        jPanel1.setOpaque(false);
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(51, 153, 0));
@@ -60,13 +55,13 @@ public class VUnidadMedidaListado extends javax.swing.JInternalFrame {
         jLabel9.setText("LISTADO DE UNIDADES DE MEDIDAS");
         jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        txtIdRolesUsuario.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
-        txtIdRolesUsuario.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtIdRolesUsuario.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtIdRolesUsuario.setEnabled(false);
+        txtId.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
+        txtId.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtId.setEnabled(false);
 
-        tableRol.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        tableRol.setModel(new javax.swing.table.DefaultTableModel(
+        table.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -82,14 +77,14 @@ public class VUnidadMedidaListado extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        tableRol.setUpdateSelectionOnSort(false);
-        tableRol.setVerifyInputWhenFocusTarget(false);
-        tableRol.addMouseListener(new java.awt.event.MouseAdapter() {
+        table.setUpdateSelectionOnSort(false);
+        table.setVerifyInputWhenFocusTarget(false);
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableRolMouseClicked(evt);
+                tableMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tableRol);
+        jScrollPane2.setViewportView(table);
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 153, 0));
@@ -297,7 +292,7 @@ public class VUnidadMedidaListado extends javax.swing.JInternalFrame {
                         .addGap(279, 279, 279)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(85, 85, 85)
-                        .addComponent(txtIdRolesUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -318,7 +313,7 @@ public class VUnidadMedidaListado extends javax.swing.JInternalFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(txtIdRolesUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -356,9 +351,9 @@ public class VUnidadMedidaListado extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tableRolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableRolMouseClicked
-        
-    }//GEN-LAST:event_tableRolMouseClicked
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+
+    }//GEN-LAST:event_tableMouseClicked
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
@@ -387,8 +382,8 @@ public class VUnidadMedidaListado extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JLabel lblPagina;
-    public javax.swing.JTable tableRol;
+    public javax.swing.JTable table;
     public javax.swing.JTextField txtBuscar;
-    public javax.swing.JTextField txtIdRolesUsuario;
+    public javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 }

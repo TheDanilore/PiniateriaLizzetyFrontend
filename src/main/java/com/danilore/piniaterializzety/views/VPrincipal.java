@@ -4,7 +4,6 @@
  */
 package com.danilore.piniaterializzety.views;
 
-
 import com.danilore.piniaterializzety.views.persona.VPersona;
 import com.danilore.piniaterializzety.views.usuario.VUsuariosListado;
 import com.danilore.piniaterializzety.views.usuario.VPermisos;
@@ -15,8 +14,10 @@ import com.danilore.piniaterializzety.controller.LoginController;
 import com.danilore.piniaterializzety.controller.PermisoController;
 import com.danilore.piniaterializzety.controller.PersonaController;
 import com.danilore.piniaterializzety.controller.RolListadoController;
+import com.danilore.piniaterializzety.controller.UnidadMedidaListadoController;
 import com.danilore.piniaterializzety.controller.UsuarioListadoController;
 import com.danilore.piniaterializzety.models.usuario.Usuario;
+import com.danilore.piniaterializzety.views.producto.VUnidadMedidaListado;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,6 +62,7 @@ public class VPrincipal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenu1 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menuPersonas = new javax.swing.JMenu();
         menuItemGestionPersonas = new javax.swing.JMenuItem();
         menuUsuarios = new javax.swing.JMenu();
@@ -104,6 +106,15 @@ public class VPrincipal extends javax.swing.JFrame {
 
         jMenu3.setText("Productos");
         jMenu3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+
+        jMenuItem1.setText("Listado de Unidades de Medida");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
         jMenuBar1.add(jMenu3);
 
         menuPersonas.setText("Personas");
@@ -268,6 +279,18 @@ public class VPrincipal extends javax.swing.JFrame {
         vista.show();
     }//GEN-LAST:event_menuItemGestionPersonasActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        if (!tienePermiso("GESTIONAR_PERMISOS")) {
+            JOptionPane.showMessageDialog(this, "No tienes permiso para realizar esta acción.", "Acceso denegado", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        VUnidadMedidaListado vista = new VUnidadMedidaListado();
+        UnidadMedidaListadoController controller = new UnidadMedidaListadoController(vista);
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     public static void main(String args[]) {
         // Look and Feel Nimbus
         try {
@@ -304,6 +327,7 @@ public class VPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     public javax.swing.JLabel lbl_user;
     private javax.swing.JMenuItem menuItemGestionPersonas;
     private javax.swing.JMenu menuPersonas;
@@ -323,7 +347,6 @@ public class VPrincipal extends javax.swing.JFrame {
 
         // Deshabilitar Gestión de Personas
         menuItemGestionPersonas.setEnabled(usuario.tienePermiso("GESTIONAR_PERSONAS"));
-
 
         // Gestión de Usuarios, Roles y Permisos
         // Deshabilitar Menú de Usuarios

@@ -75,7 +75,7 @@ public class VPermisos extends javax.swing.JInternalFrame {
         lblTextoEditarOCrearPermiso.setForeground(new java.awt.Color(51, 153, 0));
         lblTextoEditarOCrearPermiso.setText("REGISTRA UN NUEVO PERMISO");
 
-        jPanel2.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel2.setBackground(new java.awt.Color(19, 227, 19));
 
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
@@ -117,7 +117,7 @@ public class VPermisos extends javax.swing.JInternalFrame {
             .addComponent(btnActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel4.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel4.setBackground(new java.awt.Color(19, 227, 19));
 
         btnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnNuevo.setForeground(new java.awt.Color(255, 255, 255));

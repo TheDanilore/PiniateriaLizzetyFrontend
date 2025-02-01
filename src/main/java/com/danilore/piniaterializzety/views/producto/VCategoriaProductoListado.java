@@ -52,7 +52,6 @@ public class VCategoriaProductoListado extends javax.swing.JInternalFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBackground(new java.awt.Color(236, 233, 233));
-        jPanel1.setOpaque(false);
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(51, 153, 0));
