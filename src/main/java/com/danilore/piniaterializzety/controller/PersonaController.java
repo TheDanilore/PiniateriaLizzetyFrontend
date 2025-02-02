@@ -49,7 +49,7 @@ public final class PersonaController {
     public PersonaController(VPersona v) {
         this.vista = v;
         // Ocultamos el txtIdPersona
-        this.vista.txtIdPersona.setVisible(false);
+        this.vista.txtId.setVisible(false);
 
         // Configurar eventos
         configurarEventos();
@@ -129,7 +129,7 @@ public final class PersonaController {
                 return;
             }
 
-            Long id = Long.valueOf(vista.txtIdPersona.getText());
+            Long id = Long.valueOf(vista.txtId.getText());
 
             Persona persona = obtenerPersonaDesdeVista();
 
@@ -201,7 +201,7 @@ public final class PersonaController {
 
     // ------------------ UTILITARIOS ------------------
     private void limpiarCampos() {
-        vista.txtIdPersona.setText("");
+        vista.txtId.setText("");
         vista.txtNombres.setText("");
         vista.txtApellidos.setText("");
         vista.txtDireccion.setText("");
