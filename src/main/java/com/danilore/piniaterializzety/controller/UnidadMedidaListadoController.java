@@ -38,6 +38,8 @@ public final class UnidadMedidaListadoController {
 
     String palabraSingular = "Unidad de Medida";
     String palabraPlural = "Unidades de Medida";
+    
+    String TituloGuardar = "Registra una Nueva Unidad de Medida";
 
     //Paginacion    
     private int paginaActual = 0; // Página actual
