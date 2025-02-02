@@ -25,13 +25,13 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
         pnaelContent = new javax.swing.JPanel();
         panelGuardar = new javax.swing.JPanel();
         panelBotonesGuardar = new javax.swing.JPanel();
-        CardGuardarActualizar = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        btnLimpiar = new javax.swing.JLabel();
+        cardGuardar = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         btnGuardar = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btnActualizar1 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        btnLimpiar = new javax.swing.JLabel();
         panelContentGuardar = new javax.swing.JPanel();
         txtIdGuardar = new javax.swing.JTextField();
         txtNombreUsuario1 = new javax.swing.JTextField();
@@ -76,22 +76,42 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHeaderLayout.createSequentialGroup()
-                .addGap(0, 8, Short.MAX_VALUE)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHeaderLayout.createSequentialGroup()
+                .addContainerGap(8, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pnaelContent.setLayout(new java.awt.CardLayout());
 
-        CardGuardarActualizar.setLayout(new java.awt.CardLayout());
+        jPanel6.setBackground(new java.awt.Color(19, 227, 19));
+
+        btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
+        btnLimpiar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        cardGuardar.setLayout(new java.awt.CardLayout());
 
         jPanel12.setBackground(new java.awt.Color(19, 227, 19));
 
-        btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnGuardar.setText("Guardar");
@@ -118,7 +138,7 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        CardGuardarActualizar.add(jPanel12, "card2");
+        cardGuardar.add(jPanel12, "card2");
 
         jPanel5.setBackground(new java.awt.Color(51, 153, 255));
 
@@ -149,46 +169,27 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
-        CardGuardarActualizar.add(jPanel5, "card4");
-
-        jPanel6.setBackground(new java.awt.Color(19, 227, 19));
-
-        btnLimpiar.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
-        btnLimpiar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-        );
+        cardGuardar.add(jPanel5, "card4");
 
         javax.swing.GroupLayout panelBotonesGuardarLayout = new javax.swing.GroupLayout(panelBotonesGuardar);
         panelBotonesGuardar.setLayout(panelBotonesGuardarLayout);
         panelBotonesGuardarLayout.setHorizontalGroup(
             panelBotonesGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotonesGuardarLayout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
-                .addComponent(CardGuardarActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
+                .addContainerGap(175, Short.MAX_VALUE)
+                .addComponent(cardGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addContainerGap(175, Short.MAX_VALUE))
         );
         panelBotonesGuardarLayout.setVerticalGroup(
             panelBotonesGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBotonesGuardarLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addGroup(panelBotonesGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CardGuardarActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE)
+                .addGroup(panelBotonesGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cardGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         txtIdGuardar.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -216,23 +217,22 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
         panelContentGuardarLayout.setHorizontalGroup(
             panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelContentGuardarLayout.createSequentialGroup()
-                .addGap(135, 135, 135)
+                .addGap(100, 100, 100)
                 .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelContentGuardarLayout.createSequentialGroup()
                         .addComponent(lblCodigo)
                         .addGap(49, 49, 49)
-                        .addComponent(txtIdGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
-                        .addGap(219, 219, 219))
+                        .addComponent(txtIdGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
                     .addGroup(panelContentGuardarLayout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombreUsuario1)
-                        .addGap(135, 135, 135))))
+                        .addComponent(txtNombreUsuario1)))
+                .addGap(100, 100, 100))
         );
         panelContentGuardarLayout.setVerticalGroup(
             panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelContentGuardarLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(15, 15, 15)
                 .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodigo)
                     .addComponent(txtIdGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -240,7 +240,7 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
                 .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(txtNombreUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelGuardarLayout = new javax.swing.GroupLayout(panelGuardar);
@@ -254,12 +254,12 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
         panelGuardarLayout.setVerticalGroup(
             panelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGuardarLayout.createSequentialGroup()
-                .addContainerGap(191, Short.MAX_VALUE)
+                .addContainerGap(137, Short.MAX_VALUE)
                 .addComponent(panelBotonesGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelGuardarLayout.createSequentialGroup()
                     .addComponent(panelContentGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(125, Short.MAX_VALUE)))
+                    .addContainerGap(142, Short.MAX_VALUE)))
         );
 
         pnaelContent.add(panelGuardar, "card2");
@@ -269,10 +269,10 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
         panelContentVer.setBackground(new java.awt.Color(236, 233, 233));
 
         jLabel20.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel20.setText("DESCRIPCIÓN:");
+        jLabel20.setText("Descripción:");
 
         lblCodigo1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        lblCodigo1.setText("CÓDIGO:");
+        lblCodigo1.setText("Código:");
 
         lblCodigo2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblCodigo2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -312,9 +312,9 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
                         .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCodigo1)
                             .addComponent(jLabel20))
-                        .addGap(14, 14, 14)
+                        .addGap(31, 31, 31)
                         .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblCodigo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(panelContentVerLayout.createSequentialGroup()
                         .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,14 +322,14 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
                             .addComponent(jLabel25))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                             .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(70, 70, 70))
         );
         panelContentVerLayout.setVerticalGroup(
             panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelContentVerLayout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
+                .addContainerGap(15, Short.MAX_VALUE)
                 .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCodigo2)
                     .addComponent(lblCodigo1))
@@ -345,7 +345,7 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
                 .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel25)
                     .addComponent(jLabel24))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         panelBotonesVer.setBackground(new java.awt.Color(236, 233, 233));
@@ -362,7 +362,7 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnLimpiar1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
+            .addComponent(btnLimpiar1, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,12 +397,12 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
         panelVerLayout.setVerticalGroup(
             panelVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVerLayout.createSequentialGroup()
-                .addGap(0, 199, Short.MAX_VALUE)
+                .addGap(0, 179, Short.MAX_VALUE)
                 .addComponent(panelBotonesVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelVerLayout.createSequentialGroup()
                     .addComponent(panelContentVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 85, Short.MAX_VALUE)))
+                    .addGap(0, 78, Short.MAX_VALUE)))
         );
 
         pnaelContent.add(panelVer, "card3");
@@ -419,7 +419,7 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 262, Short.MAX_VALUE))
+                .addGap(0, 242, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addGap(47, 47, 47)
@@ -447,11 +447,11 @@ public final class VUnidadMedida extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel CardGuardarActualizar;
     public javax.swing.JLabel btnActualizar1;
     public javax.swing.JLabel btnGuardar;
     public javax.swing.JLabel btnLimpiar;
     public javax.swing.JLabel btnLimpiar1;
+    private javax.swing.JPanel cardGuardar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
