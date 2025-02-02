@@ -546,7 +546,7 @@ public final class VProveedor extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addGap(47, 47, 47)
-                    .addComponent(pnaelContent, javax.swing.GroupLayout.PREFERRED_SIZE, 263, Short.MAX_VALUE)))
+                    .addComponent(pnaelContent, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
