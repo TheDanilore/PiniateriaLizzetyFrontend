@@ -23,11 +23,9 @@ import com.danilore.piniaterializzety.views.usuario.VPermisoListado;
  */
 public final class PermisoController {
 
-    private final VPermiso vista;
+    private VPermiso vista;
     private VPermisoListado vistaListado;
     private static final String BASE_URL = "http://localhost:8080/api/permisos";
-
-    private VPrincipal principal;
 
     public PermisoController(VPermiso vista, VPermisoListado vistaListado, Usuario usuario) {
         this.vista = vista;
@@ -66,7 +64,6 @@ public final class PermisoController {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 actualizarPermiso();
-                enviarVistaListado();
             }
         });
 
@@ -76,10 +73,17 @@ public final class PermisoController {
                 limpiarCampos();
             }
         });
+
+        vista.btnRegresarListado.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                enviarVistaListado();
+            }
+        });
     }
 
     //---------------------   CRUD DE PERMISO   --------------
-    private void guardarPermiso() {
+    public void guardarPermiso() {
         try {
             if (!camposValidos()) {
                 JOptionPane.showMessageDialog(null, "Debe completar todos los campos.");
@@ -114,7 +118,7 @@ public final class PermisoController {
         }
     }
 
-    private void actualizarPermiso() {
+    public void actualizarPermiso() {
         try {
             if (!camposValidos()) {
                 mostrarMensaje("Debe completar todos los campos.");
@@ -142,6 +146,7 @@ public final class PermisoController {
             if (response.statusCode() == 200) {
                 mostrarMensaje("Permiso actualizado con éxito.");
                 limpiarCampos();
+                enviarVistaListado();
             } else {
                 mostrarError("Error al actualizar permiso. Error: " + response.body());
             }
@@ -150,14 +155,14 @@ public final class PermisoController {
         }
     }
 
-    private void enviarVistaListado() {
+    public void enviarVistaListado() {
         PermisoListadoController controller = new PermisoListadoController(vistaListado, vista, new Usuario()); // Pasar el usuario
         vista.setVisible(false);
         vistaListado.setVisible(true);
     }
 
     //-----------------------------------------------
-    private void limpiarCampos() {
+    public void limpiarCampos() {
         vista.lblCodigo.setVisible(false);
         vista.txtId.setVisible(false);
         vista.txtId.setText("");
@@ -171,7 +176,7 @@ public final class PermisoController {
         vista.btnLimpiar.setVisible(true);
     }
 
-    private boolean camposValidos() {
+    public boolean camposValidos() {
         return !vista.txtDescripcion.getText().trim().isEmpty()
                 && !vista.txtAccion.getText().trim().isEmpty();
     }

@@ -71,9 +71,11 @@ com\danilore\piniaterializzety\controller\UsuarioController$4.class
 com\danilore\piniaterializzety\PiniateriaLizzety.class
 com\danilore\piniaterializzety\models\persona\Provincia.class
 com\danilore\piniaterializzety\views\usuario\VRolesListado.class
+com\danilore\piniaterializzety\controller\PermisoListadoController$11.class
 com\danilore\piniaterializzety\controller\PersonaListadoController$6.class
 com\danilore\piniaterializzety\views\inventario\VMovimientoListado$1.class
 com\danilore\piniaterializzety\models\usuario\Permiso.class
+com\danilore\piniaterializzety\controller\PermisoController$4.class
 com\danilore\piniaterializzety\models\usuario\Rol.class
 com\danilore\piniaterializzety\views\producto\VCategoriaProductoListado.class
 com\danilore\piniaterializzety\controller\PermisoListadoController.class
@@ -90,6 +92,7 @@ com\danilore\piniaterializzety\views\persona\VPersonaListado$2.class
 com\danilore\piniaterializzety\models\inventario\Tamano.class
 com\danilore\piniaterializzety\views\inventario\VSalidaProductoListado.class
 com\danilore\piniaterializzety\views\VLogin$2.class
+com\danilore\piniaterializzety\services\PermisoService.class
 com\danilore\piniaterializzety\controller\UsuarioListadoController.class
 com\danilore\piniaterializzety\controller\UsuarioListadoController$4.class
 com\danilore\piniaterializzety\controller\PersonaListadoController$8.class
@@ -99,6 +102,7 @@ com\danilore\piniaterializzety\views\usuario\VUsuariosListado$2.class
 com\danilore\piniaterializzety\views\VLogin$1.class
 com\danilore\piniaterializzety\models\inventario\SalidaProducto.class
 com\danilore\piniaterializzety\controller\UsuarioListadoController$11.class
+com\danilore\piniaterializzety\controller\PermisoListadoController$13.class
 com\danilore\piniaterializzety\models\inventario\Color.class
 com\danilore\piniaterializzety\controller\UsuarioListadoController$10.class
 com\danilore\piniaterializzety\views\inventario\VColor$2.class
@@ -111,6 +115,7 @@ com\danilore\piniaterializzety\views\VPrincipal.class
 com\danilore\piniaterializzety\views\producto\VProveedorListado$2.class
 com\danilore\piniaterializzety\services\RolService$1.class
 com\danilore\piniaterializzety\views\persona\VPersona$6.class
+com\danilore\piniaterializzety\controller\PermisoListadoController$14.class
 com\danilore\piniaterializzety\views\inventario\VColor$1.class
 com\danilore\piniaterializzety\views\producto\VProducto$1.class
 com\danilore\piniaterializzety\models\persona\Departamento.class
@@ -146,6 +151,7 @@ com\danilore\piniaterializzety\controller\UnidadMedidaListadoController$5.class
 com\danilore\piniaterializzety\views\persona\VDistrito.class
 com\danilore\piniaterializzety\controller\UsuarioListadoController$12.class
 com\danilore\piniaterializzety\models\producto\Ubicacion.class
+com\danilore\piniaterializzety\controller\PermisoListadoController$12.class
 com\danilore\piniaterializzety\controller\UsuarioController.class
 com\danilore\piniaterializzety\views\persona\VPersona$4.class
 com\danilore\piniaterializzety\models\persona\enums\GeneroEnum.class

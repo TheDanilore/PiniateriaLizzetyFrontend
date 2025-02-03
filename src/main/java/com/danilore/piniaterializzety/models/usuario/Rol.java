@@ -19,10 +19,7 @@ public class Rol {
     private int id;
     private String descripcion;
     private EstadoEnum estado;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime createdAt;
-
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime updatedAt;
     private List<Permiso> permisos = new ArrayList<>();
 

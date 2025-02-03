@@ -18,10 +18,7 @@ public class Usuario {
     private String password;
     private String avatar;
     private EstadoEnum estado;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime createdAt;
-
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime updatedAt;
     private List<Rol> roles = new ArrayList<>();
 

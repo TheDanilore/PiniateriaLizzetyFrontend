@@ -1,6 +1,5 @@
 package com.danilore.piniaterializzety.views.usuario;
 
-import com.danilore.piniaterializzety.views.producto.*;
 
 /**
  *
@@ -47,9 +46,10 @@ public class VPermisoListado extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Listado de Unidades");
+        setTitle("Listado");
         setToolTipText("");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setOpaque(true);
 
         jPanel2.setBackground(new java.awt.Color(49, 168, 250));
 
@@ -247,12 +247,9 @@ public class VPermisoListado extends javax.swing.JInternalFrame {
             .addGroup(panelHeaderLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelHeaderLayout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelHeaderLayout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(139, 832, Short.MAX_VALUE))))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelHeaderLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)

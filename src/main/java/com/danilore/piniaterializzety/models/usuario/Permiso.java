@@ -16,10 +16,7 @@ public class Permiso {
     private int id;
     private String descripcion;
     private String accion;// Identificador único de la acción (ej., "crear_usuario")
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime createdAt;
-
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     private LocalDateTime updatedAt;
 
     public Permiso() {
@@ -72,7 +69,7 @@ public class Permiso {
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
     }
-    
+
     // Sobrescribir toString (opcional, para debugging o logs)
     @Override
     public String toString() {
@@ -82,6 +79,5 @@ public class Permiso {
                 + ", accion=" + accion
                 + '}';
     }
-
 
 }

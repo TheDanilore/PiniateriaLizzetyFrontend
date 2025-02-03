@@ -264,11 +264,22 @@ public class VPrincipal extends javax.swing.JFrame {
 
         VPermisoListado vistaListado = new VPermisoListado();
         VPermiso vistaPermiso = new VPermiso();
-        PermisoListadoController controller = new PermisoListadoController(vistaListado,vistaPermiso, usuario); // Pasar el usuario
+        //Metodos CRUD
+        PermisoListadoController controller = new PermisoListadoController(vistaListado, vistaPermiso, usuario); // Pasar el usuario
+        
+        // Centrar el JInternalFrame dentro del JDesktopPane
+        int x = (escritorio.getWidth() - vistaListado.getWidth()) / 2;
+        int y = (escritorio.getHeight() - vistaListado.getHeight()) / 2;
+        vistaListado.setLocation(x, y);
+        
+        int x2 = (escritorio.getWidth() - vistaPermiso.getWidth()) / 2;
+        int y2 = (escritorio.getHeight() - vistaPermiso.getHeight()) / 2;
+        vistaPermiso.setLocation(x2, y2);
+
         escritorio.add(vistaListado);
         escritorio.add(vistaPermiso);
-        vistaListado.show();
-
+        
+        vistaListado.setVisible(true);
     }//GEN-LAST:event_menuitemGestionPermisosActionPerformed
 
     private void menuItemGestionPersonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemGestionPersonasActionPerformed

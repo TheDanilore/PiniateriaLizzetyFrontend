@@ -9,7 +9,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import java.awt.FlowLayout;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,12 +17,13 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import javax.swing.JButton;
-import javax.swing.JPanel;
 import com.danilore.piniaterializzety.models.usuario.Permiso;
 import com.danilore.piniaterializzety.models.usuario.Usuario;
 import com.danilore.piniaterializzety.views.usuario.VPermiso;
 import com.danilore.piniaterializzety.views.usuario.VPermisoListado;
+import java.awt.HeadlessException;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.time.format.DateTimeFormatter;
@@ -34,6 +34,7 @@ import java.time.format.DateTimeFormatter;
  */
 public final class PermisoListadoController {
 
+    private Usuario usuario;
     private final VPermisoListado vista;
     private final VPermiso vistaPermiso;
     private static final String BASE_URL = "http://localhost:8080/api/permisos";
@@ -54,6 +55,7 @@ public final class PermisoListadoController {
     public PermisoListadoController(VPermisoListado vistaListado, VPermiso vistaPermiso, Usuario usuario) {
         this.vista = vistaListado;
         this.vistaPermiso = vistaPermiso; // Asocia la vista de edición
+
         configurarEventos();
 
         vista.lblPagina.setText("Página: " + (paginaActual + 1));
@@ -141,6 +143,34 @@ public final class PermisoListadoController {
             }
         });
 
+        //Vista Guardar o Editar o Visualizar
+        vistaPermiso.btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guardarPermiso();
+            }
+        });
+
+        vistaPermiso.btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                actualizarPermiso();
+            }
+        });
+
+        vistaPermiso.btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                limpiarCampos();
+            }
+        });
+
+        vistaPermiso.btnRegresarListado.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                enviarVistaListado();
+            }
+        });
     }
 
     // -------- Metodos de Paginacion ----------------
@@ -295,14 +325,25 @@ public final class PermisoListadoController {
             } else {
                 JOptionPane.showMessageDialog(vista, "Error al listar " + palabraPlural + ". Error: " + response.body());
             }
-        } catch (Exception e) {
+        } catch (HeadlessException | IOException | InterruptedException | URISyntaxException e) {
             JOptionPane.showMessageDialog(null, "Error al listar " + palabraPlural + ": " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     public void nuevo() {
-        PermisoController permisoGuardarController = new PermisoController(vistaPermiso, vista, new Usuario());
-        vistaPermiso.setVisible(true); // Muestra la vista de edición
+        //PermisoController permisoGuardarController = new PermisoController(vistaPermiso, vista, usuario);
+        // Configurar la vista
+        vistaPermiso.lblCodigo.setVisible(false);
+        vistaPermiso.txtId.setVisible(false);
+
+        vistaPermiso.lblTextoEditarOCrearPermiso.setText("REGISTRAR PERMISO");
+        // Activa los botones necesarios para edición
+        vistaPermiso.panelBtnActualizar.setVisible(false);
+        vistaPermiso.panelBtnGuardar.setVisible(true);
+        vistaPermiso.btnLimpiar.setVisible(true);
+
+        // Ocultar la vista de listado y mostrar la de crear
+        vistaPermiso.setVisible(true); // Muestra la vista
         vista.setVisible(false);
     }
 
@@ -327,9 +368,8 @@ public final class PermisoListadoController {
     }
 
     private void enviarAVistaEdicion(Permiso permiso) {
-        PermisoController permisoEditarController = new PermisoController(vistaPermiso, vista, new Usuario());
-
-        // Configurar la vista de edición con los datos seleccionados
+        //PermisoController permisoGuardarController = new PermisoController(vistaPermiso, vista, usuario);
+        // Configurar la vista
         vistaPermiso.lblCodigo.setVisible(true);
         vistaPermiso.txtId.setText(String.valueOf(permiso.getId()));
         vistaPermiso.txtId.setVisible(true);
@@ -345,6 +385,7 @@ public final class PermisoListadoController {
         // Ocultar la vista de listado y mostrar la de edición
         vistaPermiso.setVisible(true); // Muestra la vista de edición
         vista.setVisible(false);
+
     }
 
     public void eliminar() {
@@ -375,7 +416,110 @@ public final class PermisoListadoController {
         }
     }
 
+    ///////////////////////////////////////////////////////
+    //Metodos de vista Guardar, editar o ver
+    public void guardarPermiso() {
+        try {
+            if (!camposValidos()) {
+                JOptionPane.showMessageDialog(null, "Debe completar todos los campos.");
+                return;
+            }
+
+            Permiso permiso = new Permiso();
+            permiso.setDescripcion(vistaPermiso.txtDescripcion.getText().trim());
+            permiso.setAccion(vistaPermiso.txtAccion.getText().trim());
+
+            ObjectMapper mapper = new ObjectMapper();
+            String requestBody = mapper.writeValueAsString(permiso);
+
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI(BASE_URL))
+                    .header("Content-Type", "application/json")
+                    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() == 200 || response.statusCode() == 201) {
+                mostrarMensaje("Permiso guardado con éxito.");
+                limpiarCampos();
+                listar();
+            } else {
+                mostrarError("Error al guardar permiso. Error: " + response.body());
+            }
+
+        } catch (Exception e) {
+            mostrarError("Error al guardar el permiso: " + e.getMessage());
+        }
+    }
+
+    public void actualizarPermiso() {
+        try {
+            if (!camposValidos()) {
+                mostrarMensaje("Debe completar todos los campos.");
+                return;
+            }
+
+            int id = Integer.parseInt(vistaPermiso.txtId.getText());
+            Permiso permiso = new Permiso();
+            permiso.setId(Integer.parseInt(vistaPermiso.txtId.getText()));
+            permiso.setDescripcion(vistaPermiso.txtDescripcion.getText().trim());
+            permiso.setAccion(vistaPermiso.txtAccion.getText().trim());
+
+            ObjectMapper mapper = new ObjectMapper();
+            String requestBody = mapper.writeValueAsString(permiso);
+
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(new URI(BASE_URL + "/editar/" + id))
+                    .header("Content-Type", "application/json")
+                    .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
+                    .build();
+
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+            if (response.statusCode() == 200) {
+                mostrarMensaje("Permiso actualizado con éxito.");
+                limpiarCampos();
+                enviarVistaListado();
+                listar();
+            } else {
+                mostrarError("Error al actualizar permiso. Error: " + response.body());
+            }
+        } catch (Exception e) {
+            mostrarError("Error al actualizar el permiso: " + e.getMessage());
+        }
+    }
+
+    private void enviarVistaListado() {
+        vistaPermiso.setVisible(false);
+        vista.setVisible(true);
+        limpiarCampos();
+    }
+
     //-----------------------------------------------
+    private void limpiarCampos() {
+        vistaPermiso.lblCodigo.setVisible(false);
+        vistaPermiso.txtId.setVisible(false);
+        vistaPermiso.txtId.setText("");
+        vistaPermiso.txtDescripcion.setText("");
+        vistaPermiso.txtAccion.setText("");
+
+        vistaPermiso.lblTextoEditarOCrearPermiso.setText("REGISTRAR PERMISO");
+
+        vistaPermiso.panelBtnActualizar.setVisible(false);
+        vistaPermiso.panelBtnGuardar.setVisible(true);
+        vistaPermiso.btnLimpiar.setVisible(true);
+    }
+
+    private boolean camposValidos() {
+        return !vistaPermiso.txtDescripcion.getText().trim().isEmpty()
+                && !vistaPermiso.txtAccion.getText().trim().isEmpty();
+    }
+
+    ////////////////////////////
+
     public void limpiarTable() {
         DefaultTableModel model = (DefaultTableModel) vista.table.getModel();
         model.setRowCount(0);
@@ -396,6 +540,10 @@ public final class PermisoListadoController {
 
     public void marcaAgua() {
         TextPrompt txtBuscar = new TextPrompt("ID o Descripcion", vista.txtBuscar);
+
+        //Guardar o editar
+        TextPrompt descripcion = new TextPrompt("Descripción del Permiso", vistaPermiso.txtDescripcion);
+        TextPrompt accion = new TextPrompt("Acción (ej. CREATE)", vistaPermiso.txtAccion);
     }
 
 }

@@ -1,10 +1,5 @@
 package com.danilore.piniaterializzety.views.usuario;
 
-import com.danilore.piniaterializzety.views.producto.*;
-import com.danilore.piniaterializzety.models.producto.CategoriaProducto;
-import com.danilore.piniaterializzety.models.producto.UnidadMedida;
-import com.danilore.piniaterializzety.models.producto.Proveedor;
-import com.danilore.piniaterializzety.models.producto.Ubicacion;
 /**
  *
  * @author ASUS
@@ -33,6 +28,8 @@ public final class VPermiso extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JLabel();
         panelBtnActualizar = new javax.swing.JPanel();
         btnActualizar = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        btnRegresarListado = new javax.swing.JLabel();
         panelContentGuardar = new javax.swing.JPanel();
         txtId = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
@@ -59,11 +56,11 @@ public final class VPermiso extends javax.swing.JInternalFrame {
         lblTextoCrearOEditar.setText("Registra una Nueva Unidad de Medida");
 
         setBackground(new java.awt.Color(236, 233, 233));
-        setClosable(true);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Registro de Categorias");
+        setTitle("Registro");
 
         jPanel1.setBackground(new java.awt.Color(236, 233, 233));
 
@@ -174,16 +171,37 @@ public final class VPermiso extends javax.swing.JInternalFrame {
 
         cardGuardar.add(panelBtnActualizar, "card4");
 
+        jPanel9.setBackground(new java.awt.Color(71, 173, 255));
+
+        btnRegresarListado.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnRegresarListado.setForeground(new java.awt.Color(255, 255, 255));
+        btnRegresarListado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnRegresarListado.setText("Regresar");
+        btnRegresarListado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnRegresarListado, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnRegresarListado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
         javax.swing.GroupLayout panelBotonesGuardarLayout = new javax.swing.GroupLayout(panelBotonesGuardar);
         panelBotonesGuardar.setLayout(panelBotonesGuardarLayout);
         panelBotonesGuardarLayout.setHorizontalGroup(
             panelBotonesGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotonesGuardarLayout.createSequentialGroup()
-                .addContainerGap(175, Short.MAX_VALUE)
+                .addContainerGap(100, Short.MAX_VALUE)
                 .addComponent(cardGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
+                .addGap(56, 56, 56)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addGap(56, 56, 56)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(99, Short.MAX_VALUE))
         );
         panelBotonesGuardarLayout.setVerticalGroup(
             panelBotonesGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +209,8 @@ public final class VPermiso extends javax.swing.JInternalFrame {
                 .addContainerGap(18, Short.MAX_VALUE)
                 .addGroup(panelBotonesGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cardGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cardGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -278,12 +297,12 @@ public final class VPermiso extends javax.swing.JInternalFrame {
         panelGuardarLayout.setVerticalGroup(
             panelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGuardarLayout.createSequentialGroup()
-                .addContainerGap(187, Short.MAX_VALUE)
+                .addContainerGap(197, Short.MAX_VALUE)
                 .addComponent(panelBotonesGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelGuardarLayout.createSequentialGroup()
                     .addComponent(panelContentGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 85, Short.MAX_VALUE)))
+                    .addGap(0, 95, Short.MAX_VALUE)))
         );
 
         pnaelContent.add(panelGuardar, "card2");
@@ -417,12 +436,12 @@ public final class VPermiso extends javax.swing.JInternalFrame {
         panelVerLayout.setVerticalGroup(
             panelVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVerLayout.createSequentialGroup()
-                .addGap(0, 189, Short.MAX_VALUE)
+                .addGap(0, 199, Short.MAX_VALUE)
                 .addComponent(panelBotonesVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelVerLayout.createSequentialGroup()
                     .addComponent(panelContentVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 88, Short.MAX_VALUE)))
+                    .addGap(0, 98, Short.MAX_VALUE)))
         );
 
         pnaelContent.add(panelVer, "card3");
@@ -433,13 +452,13 @@ public final class VPermiso extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnaelContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE))
+                .addComponent(pnaelContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 587, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 252, Short.MAX_VALUE))
+                .addGap(0, 262, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addGap(47, 47, 47)
@@ -475,6 +494,7 @@ public final class VPermiso extends javax.swing.JInternalFrame {
     public javax.swing.JLabel btnGuardar;
     public javax.swing.JLabel btnLimpiar;
     public javax.swing.JLabel btnRegresar;
+    public javax.swing.JLabel btnRegresarListado;
     private javax.swing.JPanel cardGuardar;
     private javax.swing.JLabel jDescripcion;
     private javax.swing.JLabel jLabel19;
@@ -485,6 +505,7 @@ public final class VPermiso extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     public javax.swing.JLabel lblCodigo;
     public javax.swing.JLabel lblCodigo1;
     public javax.swing.JLabel lblCodigo2;
