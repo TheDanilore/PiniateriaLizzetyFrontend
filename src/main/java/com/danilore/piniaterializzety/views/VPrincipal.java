@@ -6,18 +6,20 @@ package com.danilore.piniaterializzety.views;
 
 import com.danilore.piniaterializzety.views.persona.VPersona;
 import com.danilore.piniaterializzety.views.usuario.VUsuariosListado;
-import com.danilore.piniaterializzety.views.usuario.VPermisos;
 import com.danilore.piniaterializzety.views.usuario.VUsuarios;
 import com.danilore.piniaterializzety.views.usuario.VRolesListado;
 import com.danilore.piniaterializzety.views.usuario.VRoles;
 import com.danilore.piniaterializzety.controller.LoginController;
 import com.danilore.piniaterializzety.controller.PermisoController;
+import com.danilore.piniaterializzety.controller.PermisoListadoController;
 import com.danilore.piniaterializzety.controller.PersonaController;
 import com.danilore.piniaterializzety.controller.RolListadoController;
 import com.danilore.piniaterializzety.controller.UnidadMedidaListadoController;
 import com.danilore.piniaterializzety.controller.UsuarioListadoController;
 import com.danilore.piniaterializzety.models.usuario.Usuario;
 import com.danilore.piniaterializzety.views.producto.VUnidadMedidaListado;
+import com.danilore.piniaterializzety.views.usuario.VPermiso;
+import com.danilore.piniaterializzety.views.usuario.VPermisoListado;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -260,10 +262,12 @@ public class VPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        VPermisos vista = new VPermisos();
-        PermisoController controller = new PermisoController(vista, usuario); // Pasar el usuario
-        escritorio.add(vista);
-        vista.show();
+        VPermisoListado vistaListado = new VPermisoListado();
+        VPermiso vistaPermiso = new VPermiso();
+        PermisoListadoController controller = new PermisoListadoController(vistaListado,vistaPermiso, usuario); // Pasar el usuario
+        escritorio.add(vistaListado);
+        escritorio.add(vistaPermiso);
+        vistaListado.show();
 
     }//GEN-LAST:event_menuitemGestionPermisosActionPerformed
 

@@ -85,12 +85,30 @@ public final class UsuarioListadoController {
     }
 
     private void configurarEventos() {
+        vista.btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                enModoBusqueda = true; // Activar modo búsqueda
+                criterioBusqueda = vista.txtBuscar.getText().trim(); // Guardar el criterio actual
+                paginaActual = 0; // Reiniciar a la primera página
+                listarUsuariosPorCriterio();
+            }
+        });
+
         vista.btnListar.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 nuevoListado();
             }
         });
+        
+        vista.btnNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nuevo();
+            }
+        });
+
         vista.btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -116,23 +134,6 @@ public final class UsuarioListadoController {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 eliminar();
-            }
-        });
-
-        vista.btnNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nuevo();
-            }
-        });
-
-        vista.btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                enModoBusqueda = true; // Activar modo búsqueda
-                criterioBusqueda = vista.txtBuscar.getText().trim(); // Guardar el criterio actual
-                paginaActual = 0; // Reiniciar a la primera página
-                listarUsuariosPorCriterio();
             }
         });
 
@@ -280,13 +281,20 @@ public final class UsuarioListadoController {
                             .reduce((desc1, desc2) -> desc1 + ", " + desc2) // Unir descripciones con coma
                             .orElse("Sin roles");
 
+                    // Validar valores nulos y mostrar cadena vacía si es necesario
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                    String createdAt = (usuario.getCreatedAt() != null) ? usuario.getCreatedAt().format(formatter) : "";
+                    String updatedAt = (usuario.getUpdatedAt() != null) ? usuario.getUpdatedAt().format(formatter) : "";
+
                     model.addRow(new Object[]{
                         usuario.getId(),
                         usuario.getNombre(),
                         usuario.getEmail(),
                         usuario.getPassword(),
                         rolesDescripcion,
-                        usuario.getEstado().name()
+                        usuario.getEstado().name(),
+                        createdAt,
+                        updatedAt
                     });
                 }
 
@@ -334,8 +342,8 @@ public final class UsuarioListadoController {
 
                     // Validar valores nulos y mostrar cadena vacía si es necesario
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-                    String createdAt = (usuario.getCreatedAt()!= null) ? usuario.getCreatedAt().format(formatter) : "";
-                    String updatedAt = (usuario.getUpdatedAt()!= null) ? usuario.getUpdatedAt().format(formatter) : "";
+                    String createdAt = (usuario.getCreatedAt() != null) ? usuario.getCreatedAt().format(formatter) : "";
+                    String updatedAt = (usuario.getUpdatedAt() != null) ? usuario.getUpdatedAt().format(formatter) : "";
 
                     model.addRow(new Object[]{
                         usuario.getId(),

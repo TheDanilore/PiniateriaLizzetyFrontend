@@ -1,7 +1,7 @@
 com\danilore\piniaterializzety\controller\PermisoListadoController$3.class
 com\danilore\piniaterializzety\controller\PersonaController$5.class
 com\danilore\piniaterializzety\controller\UnidadMedidaListadoController$2.class
-com\danilore\piniaterializzety\views\usuario\VPermisosListado1$1.class
+com\danilore\piniaterializzety\views\usuario\VPermisoListado$1.class
 com\danilore\piniaterializzety\views\persona\VPersonaListado.class
 com\danilore\piniaterializzety\views\producto\VCategoriaProducto.class
 com\danilore\piniaterializzety\views\inventario\VMovimientoListado.class
@@ -18,14 +18,15 @@ com\danilore\piniaterializzety\models\producto\UnidadMedida.class
 com\danilore\piniaterializzety\controller\UnidadMedidaListadoController$8.class
 com\danilore\piniaterializzety\controller\LoginController.class
 com\danilore\piniaterializzety\views\inventario\VMovimientoListado$2.class
-com\danilore\piniaterializzety\views\usuario\VPermisosListado1.class
 com\danilore\piniaterializzety\views\producto\VUbicacion$3.class
 com\danilore\piniaterializzety\views\VPrincipal$6.class
 com\danilore\piniaterializzety\controller\RolController$2.class
 com\danilore\piniaterializzety\controller\UsuarioListadoController$7.class
+com\danilore\piniaterializzety\views\usuario\VPermiso$1.class
 com\danilore\piniaterializzety\views\inventario\VMovimientoListado1$1.class
 com\danilore\piniaterializzety\views\persona\VPersona$1.class
 com\danilore\piniaterializzety\models\inventario\enums\TipoSalidaEnum.class
+com\danilore\piniaterializzety\controller\PermisoListadoController$8.class
 com\danilore\piniaterializzety\views\inventario\VLongitudListado$3.class
 com\danilore\piniaterializzety\views\usuario\VRoles.class
 com\danilore\piniaterializzety\controller\RolListadoController$1.class
@@ -48,12 +49,14 @@ com\danilore\piniaterializzety\views\inventario\VMovimientoListado$3.class
 com\danilore\piniaterializzety\controller\RolListadoController$2.class
 com\danilore\piniaterializzety\views\producto\VProductoListado.class
 com\danilore\piniaterializzety\models\inventario\Longitud.class
+com\danilore\piniaterializzety\controller\PermisoListadoController$10.class
 com\danilore\piniaterializzety\models\inventario\ItemEntrada.class
 com\danilore\piniaterializzety\controller\UnidadMedidaListadoController$1.class
 com\danilore\piniaterializzety\models\persona\TipoDocumentoIdentidad.class
 com\danilore\piniaterializzety\controller\RolController$1.class
 com\danilore\piniaterializzety\views\persona\VTipoDocumentoIdentidad.class
 com\danilore\piniaterializzety\controller\UsuarioListadoController$8.class
+com\danilore\piniaterializzety\views\usuario\VPermiso.class
 com\danilore\piniaterializzety\views\usuario\VUsuarios.class
 com\danilore\piniaterializzety\views\producto\VProveedor$1.class
 com\danilore\piniaterializzety\views\usuario\VUsuarios$3.class
@@ -75,12 +78,12 @@ com\danilore\piniaterializzety\models\usuario\Rol.class
 com\danilore\piniaterializzety\views\producto\VCategoriaProductoListado.class
 com\danilore\piniaterializzety\controller\PermisoListadoController.class
 com\danilore\piniaterializzety\controller\PersonaListadoController.class
+com\danilore\piniaterializzety\controller\PermisoListadoController$7.class
 com\danilore\piniaterializzety\controller\PersonaController.class
 com\danilore\piniaterializzety\controller\UsuarioListadoController$6.class
 com\danilore\piniaterializzety\views\inventario\VInventarioListado$2.class
 com\danilore\piniaterializzety\controller\PersonaController$6.class
 com\danilore\piniaterializzety\controller\UsuarioListadoController$3.class
-com\danilore\piniaterializzety\views\usuario\VPermisosListado1$2.class
 com\danilore\piniaterializzety\models\inventario\Imagen.class
 com\danilore\piniaterializzety\models\producto\Producto.class
 com\danilore\piniaterializzety\views\persona\VPersonaListado$2.class
@@ -101,6 +104,7 @@ com\danilore\piniaterializzety\controller\UsuarioListadoController$10.class
 com\danilore\piniaterializzety\views\inventario\VColor$2.class
 com\danilore\piniaterializzety\views\persona\VPersona$5.class
 com\danilore\piniaterializzety\clases\Evento.class
+com\danilore\piniaterializzety\controller\PermisoListadoController$9.class
 com\danilore\piniaterializzety\views\usuario\VUsuariosListado$1.class
 com\danilore\piniaterializzety\controller\UsuarioListadoController$5.class
 com\danilore\piniaterializzety\views\VPrincipal.class
@@ -148,6 +152,7 @@ com\danilore\piniaterializzety\models\persona\enums\GeneroEnum.class
 com\danilore\piniaterializzety\views\producto\VProducto$3.class
 com\danilore\piniaterializzety\controller\PersonaController$3.class
 com\danilore\piniaterializzety\controller\PermisoListadoController$1.class
+com\danilore\piniaterializzety\controller\PermisoListadoController$5.class
 com\danilore\piniaterializzety\views\inventario\VEntradaProductoListado$1.class
 com\danilore\piniaterializzety\views\persona\VPersonaListado$3.class
 com\danilore\piniaterializzety\controller\UsuarioController$2.class
@@ -160,6 +165,7 @@ com\danilore\piniaterializzety\models\usuario\Usuario.class
 com\danilore\piniaterializzety\views\persona\VPersona$3.class
 com\danilore\piniaterializzety\views\producto\VUnidadMedidaListado$2.class
 com\danilore\piniaterializzety\controller\RolListadoController$9.class
+com\danilore\piniaterializzety\controller\PermisoListadoController$6.class
 com\danilore\piniaterializzety\views\inventario\VTamanoListado$3.class
 com\danilore\piniaterializzety\views\usuario\VPermisos.class
 com\danilore\piniaterializzety\views\producto\VUbicacionListado$3.class
@@ -191,6 +197,7 @@ com\danilore\piniaterializzety\views\VPrincipal$2.class
 com\danilore\piniaterializzety\views\VLogin$5.class
 com\danilore\piniaterializzety\controller\UsuarioController$1.class
 com\danilore\piniaterializzety\views\producto\VProveedor$2.class
+com\danilore\piniaterializzety\views\usuario\VPermisoListado$3.class
 com\danilore\piniaterializzety\views\inventario\VSalidaProductoListado$3.class
 com\danilore\piniaterializzety\services\RolService.class
 com\danilore\piniaterializzety\views\producto\VProveedor.class
@@ -204,8 +211,10 @@ com\danilore\piniaterializzety\views\producto\VCategoriaProductoListado$1.class
 com\danilore\piniaterializzety\controller\UnidadMedidaListadoController$4.class
 com\danilore\piniaterializzety\views\producto\VProductoListado$3.class
 com\danilore\piniaterializzety\views\inventario\VLongitud$1.class
+com\danilore\piniaterializzety\views\usuario\VPermisoListado.class
 com\danilore\piniaterializzety\clases\TextPrompt$Show.class
 com\danilore\piniaterializzety\views\inventario\VTamano.class
+com\danilore\piniaterializzety\views\usuario\VPermiso$2.class
 com\danilore\piniaterializzety\views\usuario\VRoles$2.class
 com\danilore\piniaterializzety\models\persona\Persona.class
 com\danilore\piniaterializzety\views\VPrincipal$5.class
@@ -213,6 +222,7 @@ com\danilore\piniaterializzety\controller\RolListadoController$5.class
 com\danilore\piniaterializzety\views\inventario\VTamanoListado.class
 com\danilore\piniaterializzety\views\inventario\VMovimientoListado1$2.class
 com\danilore\piniaterializzety\views\VLogin.class
+com\danilore\piniaterializzety\views\usuario\VPermisoListado$2.class
 com\danilore\piniaterializzety\clases\TextPrompt.class
 com\danilore\piniaterializzety\controller\UnidadMedidaListadoController$3.class
 com\danilore\piniaterializzety\views\inventario\VInventarioListado.class

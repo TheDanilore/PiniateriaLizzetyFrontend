@@ -13,7 +13,9 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import com.danilore.piniaterializzety.models.usuario.Permiso;
 import com.danilore.piniaterializzety.models.usuario.Usuario;
-import com.danilore.piniaterializzety.views.usuario.VPermisos;
+import com.danilore.piniaterializzety.views.VPrincipal;
+import com.danilore.piniaterializzety.views.usuario.VPermiso;
+import com.danilore.piniaterializzety.views.usuario.VPermisoListado;
 
 /**
  *
@@ -21,17 +23,23 @@ import com.danilore.piniaterializzety.views.usuario.VPermisos;
  */
 public final class PermisoController {
 
-    private final VPermisos vista;
+    private final VPermiso vista;
+    private VPermisoListado vistaListado;
     private static final String BASE_URL = "http://localhost:8080/api/permisos";
 
-    public PermisoController(VPermisos v, Usuario usuario) {
-        this.vista = v;
+    private VPrincipal principal;
+
+    public PermisoController(VPermiso vista, VPermisoListado vistaListado, Usuario usuario) {
+        this.vista = vista;
+        this.vistaListado = vistaListado;
         configurarEventos();
 
-
         // Configuración inicial
-        this.vista.txtIdPermiso.setVisible(false);
-        this.vista.btnActualizar.setEnabled(false);
+        this.vista.txtId.setVisible(false);
+        this.vista.lblCodigo.setVisible(false);
+
+        this.vista.panelBtnActualizar.setVisible(false);
+        this.vista.panelBtnGuardar.setVisible(true);
 
         // Habilitar botones según permisos
         configurarBotonesSegunPermisos(usuario);
@@ -42,7 +50,6 @@ public final class PermisoController {
 
     private void configurarBotonesSegunPermisos(Usuario usuario) {
         // Verificar si el usuario tiene el permiso para "Eliminar"
-
 
         // Puedes agregar más verificaciones para otros botones si es necesario
     }
@@ -59,19 +66,17 @@ public final class PermisoController {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 actualizarPermiso();
+                enviarVistaListado();
             }
         });
 
-
-        vista.btnNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+        vista.btnLimpiar.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nuevoPermiso();
+                limpiarCampos();
             }
         });
     }
-
-
 
     //---------------------   CRUD DE PERMISO   --------------
     private void guardarPermiso() {
@@ -116,9 +121,9 @@ public final class PermisoController {
                 return;
             }
 
-            int id = Integer.parseInt(vista.txtIdPermiso.getText());
+            int id = Integer.parseInt(vista.txtId.getText());
             Permiso permiso = new Permiso();
-            permiso.setId(Integer.parseInt(vista.txtIdPermiso.getText()));
+            permiso.setId(Integer.parseInt(vista.txtId.getText()));
             permiso.setDescripcion(vista.txtDescripcion.getText().trim());
             permiso.setAccion(vista.txtAccion.getText().trim());
 
@@ -145,24 +150,30 @@ public final class PermisoController {
         }
     }
 
-    //-----------------------------------------------
+    private void enviarVistaListado() {
+        PermisoListadoController controller = new PermisoListadoController(vistaListado, vista, new Usuario()); // Pasar el usuario
+        vista.setVisible(false);
+        vistaListado.setVisible(true);
+    }
 
+    //-----------------------------------------------
     private void limpiarCampos() {
-        vista.txtIdPermiso.setText("");
+        vista.lblCodigo.setVisible(false);
+        vista.txtId.setVisible(false);
+        vista.txtId.setText("");
         vista.txtDescripcion.setText("");
         vista.txtAccion.setText("");
 
-        // Deshabilitar botones
-        vista.btnActualizar.setEnabled(false);
+        vista.lblTextoEditarOCrearPermiso.setText("REGISTRAR PERMISO");
+
+        vista.panelBtnActualizar.setVisible(false);
+        vista.panelBtnGuardar.setVisible(true);
+        vista.btnLimpiar.setVisible(true);
     }
 
     private boolean camposValidos() {
         return !vista.txtDescripcion.getText().trim().isEmpty()
                 && !vista.txtAccion.getText().trim().isEmpty();
-    }
-
-    private void nuevoPermiso() {
-        limpiarCampos();
     }
 
     private void mostrarMensaje(String mensaje) {
