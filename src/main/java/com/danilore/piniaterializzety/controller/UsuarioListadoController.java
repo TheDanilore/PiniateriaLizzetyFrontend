@@ -23,6 +23,7 @@ import com.danilore.piniaterializzety.models.usuario.Usuario;
 import com.danilore.piniaterializzety.services.UsuarioService;
 import com.danilore.piniaterializzety.views.usuario.VUsuario;
 import com.danilore.piniaterializzety.views.usuario.VUsuarioListado;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -40,8 +41,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.time.format.DateTimeFormatter;
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
@@ -665,35 +669,76 @@ public final class UsuarioListadoController {
 
             usuario.setRoles(roles);
 
-            // Configurar ObjectMapper con soporte para Java 8 Time API
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.registerModule(new JavaTimeModule()); // Agregar soporte para LocalDateTime
+            // Enviar usuario y archivo en multipart/form-data
+            enviarUsuarioConImagen(usuario, selectedFile);
 
-            // Convertir objeto a JSON
-            String requestBody = mapper.writeValueAsString(usuario);
-
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() == 200 || response.statusCode() == 201) {
-                mostrarMensaje(palabraSingular + " guardado con éxito.");
-                limpiarCampos();
-                listar();
-                guardarUsuarioConImagen(usuario);
-            } else {
-                mostrarError("Error al guardar " + palabraSingular + ". Error: " + response.body());
-                System.out.println("Error al guardar " + palabraSingular + ". Error: " + response.body());
-            }
-
-        } catch (HeadlessException | IOException | InterruptedException | URISyntaxException e) {
+        } catch (HeadlessException e) {
             mostrarError("Error (Catch) al guardar " + palabraSingular + ": " + e.getMessage());
             System.out.println("Error (Catch) al guardar " + palabraSingular + ": " + e.getMessage());
+        }
+    }
+
+    private void enviarUsuarioConImagen(Usuario usuario, File file) {
+        try {
+            String boundary = "*****";
+            URL url = new URL(BASE_URL);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
+
+            OutputStream outputStream = conn.getOutputStream();
+            PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream, "UTF-8"), true);
+
+            // Configurar ObjectMapper con soporte para LocalDateTime
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule()); // Permite serializar LocalDateTime
+            objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // Opcional: Formato legible ISO 8601
+
+            // Convertir usuario a JSON
+            String usuarioJson = objectMapper.writeValueAsString(usuario);
+
+            writer.append("--").append(boundary).append("\r\n");
+            writer.append("Content-Disposition: form-data; name=\"usuario\"\r\n\r\n");
+            writer.append(usuarioJson).append("\r\n");
+
+            // Enviar archivo (si existe)
+            if (file != null) {
+                writer.append("--").append(boundary).append("\r\n");
+                writer.append("Content-Disposition: form-data; name=\"file\"; filename=\"").append(file.getName()).append("\"\r\n");
+                writer.append("Content-Type: ").append(Files.probeContentType(file.toPath())).append("\r\n\r\n");
+                writer.flush();
+
+                FileInputStream inputStream = new FileInputStream(file);
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+                
+                outputStream.flush();
+                inputStream.close();
+                writer.append("\r\n");
+            }
+
+            writer.append("--").append(boundary).append("--").append("\r\n");
+            writer.flush();
+            writer.close();
+
+            // Obtener respuesta del servidor
+            int responseCode = conn.getResponseCode();
+            if (responseCode == 200 || responseCode == 201) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                String response = reader.readLine();
+                reader.close();
+                mostrarMensaje("Usuario guardado con éxito.");
+            } else {
+                mostrarError("Error al guardar usuario: " + responseCode);
+            }
+
+        } catch (Exception e) {
+            mostrarError("Error al enviar usuario: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -850,7 +895,7 @@ public final class UsuarioListadoController {
             e.printStackTrace();
         }
     }
-    
+
     // Método para subir la imagen al backend
     public String uploadImage(File file) {
         if (file == null) {
@@ -858,7 +903,7 @@ public final class UsuarioListadoController {
             return null;
         }
 
-        try {    
+        try {
             URL url = new URL(BASE_URL_AVATAR);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setDoOutput(true);
@@ -886,8 +931,8 @@ public final class UsuarioListadoController {
             return null;
         }
     }
-    
-       // Método para guardar usuario con la imagen
+
+    // Método para guardar usuario con la imagen
     public void guardarUsuarioConImagen(Usuario usuario) {
         String imageUrl = uploadImage(selectedFile);
         if (imageUrl != null) {
