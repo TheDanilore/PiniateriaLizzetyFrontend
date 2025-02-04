@@ -151,7 +151,6 @@ com\danilore\piniaterializzety\models\producto\Ubicacion.class
 com\danilore\piniaterializzety\controller\RolListadoController$13.class
 com\danilore\piniaterializzety\controller\PermisoListadoController$12.class
 com\danilore\piniaterializzety\views\usuario\VUsuario$2.class
-com\danilore\piniaterializzety\controller\UsuarioController.class
 com\danilore\piniaterializzety\views\persona\VPersona$4.class
 com\danilore\piniaterializzety\models\persona\enums\GeneroEnum.class
 com\danilore\piniaterializzety\views\producto\VProducto$3.class
@@ -200,7 +199,6 @@ com\danilore\piniaterializzety\controller\PermisoListadoController$4.class
 com\danilore\piniaterializzety\views\VPrincipal$2.class
 com\danilore\piniaterializzety\views\VLogin$5.class
 com\danilore\piniaterializzety\views\usuario\VRolListado.class
-com\danilore\piniaterializzety\controller\UsuarioController$1.class
 com\danilore\piniaterializzety\views\producto\VProveedor$2.class
 com\danilore\piniaterializzety\views\usuario\VPermisoListado$3.class
 com\danilore\piniaterializzety\views\inventario\VSalidaProductoListado$3.class

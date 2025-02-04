@@ -371,12 +371,9 @@ public class VUsuarioListado extends javax.swing.JInternalFrame {
             .addGroup(panelHeaderLayout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelHeaderLayout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelHeaderLayout.createSequentialGroup()
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(139, 832, Short.MAX_VALUE))))
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelHeaderLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -405,7 +402,7 @@ public class VUsuarioListado extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Nombres", "Corréo", "Contraseña", "Roles", "Avatar", "Estado"
+                "Código", "Nombres", "Correo", "Contraseña", "Roles", "Avatar", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {

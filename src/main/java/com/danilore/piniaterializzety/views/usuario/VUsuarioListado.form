@@ -596,15 +596,10 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel10" min="-2" pref="80" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="139" pref="832" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jLabel10" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                          <Component id="jPanel7" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
@@ -768,7 +763,7 @@
                       <Table columnCount="7" rowCount="0">
                         <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
                         <Column editable="false" title="Nombres" type="java.lang.Object"/>
-                        <Column editable="false" title="Corr&#xe9;o" type="java.lang.Object"/>
+                        <Column editable="false" title="Correo" type="java.lang.Object"/>
                         <Column editable="false" title="Contrase&#xf1;a" type="java.lang.Object"/>
                         <Column editable="false" title="Roles" type="java.lang.Object"/>
                         <Column editable="false" title="Avatar" type="java.lang.Object"/>

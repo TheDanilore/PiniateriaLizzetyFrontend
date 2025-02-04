@@ -576,7 +576,7 @@ public final class UsuarioListadoController {
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            if (response.statusCode() == 200) {
+            if ("".equals(response.body())) {
                 mostrarMensaje(palabraSingular + " eliminado con éxito.");
                 listar();
             } else {
@@ -592,18 +592,39 @@ public final class UsuarioListadoController {
     public void guardarEnVista() {
         try {
             if (!camposValidos() && vistaUsuario.txtPassword.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Debe completar todos los campos.");
+                mostrarMensaje("Debe completar todos los campos.");
                 return;
             }
 
             Usuario usuario = new Usuario();
             usuario.setNombre(vistaUsuario.txtNombres.getText().trim());
-            usuario.setEmail(vistaUsuario.txtEmail.getText().trim());
-            usuario.setPassword(vistaUsuario.txtPassword.getText().trim());
+
+            String email = vistaUsuario.txtEmail.getText().trim();
+
+            if (!validarFormatoEmail(email)) {
+                mostrarError("Por favor, ingrese un correo electrónico válido.");
+                return;
+            }
+
+            usuario.setEmail(email);
+
+            String password = vistaUsuario.txtPassword.getText().trim();
+
+            if (!validarPassword(password)) {
+                return;
+            }
+            //usuario.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
+            usuario.setPassword(password);
 
             // Obtener roles seleccionados
-            List<String> selectedPemisos = vistaUsuario.jlistRolUser.getSelectedValuesList();
-            List<Rol> roles = selectedPemisos.stream()
+            List<String> selectedRoles = vistaUsuario.jlistRolUser.getSelectedValuesList();
+            
+            if(vistaUsuario.jlistRolUser.isSelectionEmpty()){
+                mostrarError("Debes seleccionar al menos un Rol");
+                return;
+            }
+            
+            List<Rol> roles = selectedRoles.stream()
                     .map(desc -> rolesCargados.stream()
                     .filter(rol -> rol.getDescripcion().equals(desc))
                     .findFirst()
@@ -655,11 +676,33 @@ public final class UsuarioListadoController {
             Usuario usuario = new Usuario();
             usuario.setId(Long.valueOf(vistaUsuario.txtId.getText()));
             usuario.setNombre(vistaUsuario.txtNombres.getText().trim());
-            usuario.setEmail(vistaUsuario.txtEmail.getText().trim());
-            //usuario.setPassword(vistaUsuario.txtPassword.getText().trim());
 
+            String email = vistaUsuario.txtEmail.getText().trim();
+
+            if (!validarFormatoEmail(email)) {
+                JOptionPane.showMessageDialog(vista, "Por favor, ingrese un correo electrónico válido.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            usuario.setEmail(email);
+            
+            String password = vistaUsuario.txtPassword.getText().trim();
+
+            if (!validarPasswordActualizar(password)) {
+                return;
+            }
+            //usuario.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
+            usuario.setPassword(password);
+
+            //usuario.setPassword(vistaUsuario.txtPassword.getText().trim());
             // Obtener roles seleccionados
             List<String> selectedRoles = vistaUsuario.jlistRolUser.getSelectedValuesList();
+            
+            if(vistaUsuario.jlistRolUser.isSelectionEmpty()){
+                mostrarError("Debes seleccionar al menos un Rol");
+                return;
+            }
+            
             List<Rol> roles = selectedRoles.stream()
                     .map(desc -> rolesCargados.stream()
                     .filter(rol -> rol.getDescripcion().equals(desc))
@@ -733,18 +776,35 @@ public final class UsuarioListadoController {
         return !vistaUsuario.txtNombres.getText().isEmpty()
                 && !vistaUsuario.txtEmail.getText().isEmpty();
     }
-    
+
+    private boolean validarFormatoEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+        return email.matches(emailRegex);
+    }
+
     private boolean validarPassword(String password) {
         if (password.length() < 6) {
-            JOptionPane.showMessageDialog(vista, "La contraseña debe tener al menos 6 caracteres.");
+            JOptionPane.showMessageDialog(vistaUsuario, "La contraseña debe tener al menos 6 caracteres.");
             return false;
         }
         if (password.matches(".*\\s+.*")) {
-            JOptionPane.showMessageDialog(vista, "La contraseña no puede contener espacios.");
+            JOptionPane.showMessageDialog(vistaUsuario, "La contraseña no puede contener espacios.");
             return false;
         }
         return true;
     }
+    private boolean validarPasswordActualizar(String password) {
+        if (password.length() >= 1 && password.length() < 6) {
+            JOptionPane.showMessageDialog(vistaUsuario, "La contraseña debe tener al menos 6 caracteres.");
+            return false;
+        }
+        if (password.matches(".*\\s+.*")) {
+            JOptionPane.showMessageDialog(vistaUsuario, "La contraseña no puede contener espacios.");
+            return false;
+        }
+        return true;
+    }
+
     ////////////////////////////
 
     public void limpiarTable() {
@@ -767,7 +827,7 @@ public final class UsuarioListadoController {
 
     public void marcaAgua() {
         TextPrompt btnBuscar = new TextPrompt("ID o Nombres o Correo", vista.txtBuscar);
-        
+
         // Vista Guardar o Editar o Visualizar
         TextPrompt nombreUser = new TextPrompt("Nombres del Usuario", vistaUsuario.txtNombres);
         TextPrompt user = new TextPrompt("Correo", vistaUsuario.txtEmail);

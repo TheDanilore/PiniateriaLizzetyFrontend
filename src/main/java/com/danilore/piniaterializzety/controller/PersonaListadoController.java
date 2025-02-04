@@ -224,7 +224,7 @@ public final class PersonaListadoController {
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            if (response.statusCode() == 200) {
+            if ("".equals(response.body())) {
                 mostrarMensaje("Persona eliminada con éxito.");
                 limpiarCampos();
                 listarPersonas();
