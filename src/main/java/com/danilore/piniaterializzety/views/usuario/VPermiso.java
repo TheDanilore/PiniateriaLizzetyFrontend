@@ -34,9 +34,10 @@ public final class VPermiso extends javax.swing.JInternalFrame {
         txtId = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         lblCodigo = new javax.swing.JLabel();
-        txtAccion = new javax.swing.JTextArea();
         jLabel26 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAccion = new javax.swing.JTextArea();
         panelVer = new javax.swing.JPanel();
         panelContentVer = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
@@ -45,10 +46,10 @@ public final class VPermiso extends javax.swing.JInternalFrame {
         lblDescripcion = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         lblAccion = new javax.swing.JLabel();
-        lblFEdicion = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
         lblFCreacion = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        lblFEdicion = new javax.swing.JLabel();
         panelBotonesVer = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JLabel();
@@ -71,7 +72,7 @@ public final class VPermiso extends javax.swing.JInternalFrame {
         lblTextoEditarOCrearPermiso.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblTextoEditarOCrearPermiso.setForeground(new java.awt.Color(255, 255, 255));
         lblTextoEditarOCrearPermiso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTextoEditarOCrearPermiso.setText("Permiso");
+        lblTextoEditarOCrearPermiso.setText("PERMISO");
         lblTextoEditarOCrearPermiso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
@@ -222,15 +223,10 @@ public final class VPermiso extends javax.swing.JInternalFrame {
         txtId.setEnabled(false);
 
         jLabel19.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel19.setText("ACCION:");
+        jLabel19.setText("ACCIÓN:");
 
         lblCodigo.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblCodigo.setText("CÓDIGO:");
-
-        txtAccion.setColumns(20);
-        txtAccion.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtAccion.setLineWrap(true);
-        txtAccion.setRows(5);
 
         jLabel26.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel26.setText("DESCRIPCIÓN:");
@@ -249,6 +245,12 @@ public final class VPermiso extends javax.swing.JInternalFrame {
             }
         });
 
+        txtAccion.setColumns(20);
+        txtAccion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        txtAccion.setLineWrap(true);
+        txtAccion.setRows(5);
+        jScrollPane2.setViewportView(txtAccion);
+
         javax.swing.GroupLayout panelContentGuardarLayout = new javax.swing.GroupLayout(panelContentGuardar);
         panelContentGuardar.setLayout(panelContentGuardarLayout);
         panelContentGuardarLayout.setHorizontalGroup(
@@ -256,18 +258,18 @@ public final class VPermiso extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContentGuardarLayout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelContentGuardarLayout.createSequentialGroup()
-                        .addComponent(jLabel26)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDescripcion))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelContentGuardarLayout.createSequentialGroup()
                         .addComponent(lblCodigo)
                         .addGap(49, 49, 49)
-                        .addComponent(txtId))
+                        .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelContentGuardarLayout.createSequentialGroup()
-                        .addComponent(jLabel19)
+                        .addComponent(jLabel26)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAccion)))
+                        .addComponent(txtDescripcion))
+                    .addGroup(panelContentGuardarLayout.createSequentialGroup()
+                        .addComponent(jLabel19)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane2)))
                 .addGap(100, 100, 100))
         );
         panelContentGuardarLayout.setVerticalGroup(
@@ -284,8 +286,8 @@ public final class VPermiso extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19)
-                    .addComponent(txtAccion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
 
         javax.swing.GroupLayout panelGuardarLayout = new javax.swing.GroupLayout(panelGuardar);
@@ -299,12 +301,12 @@ public final class VPermiso extends javax.swing.JInternalFrame {
         panelGuardarLayout.setVerticalGroup(
             panelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGuardarLayout.createSequentialGroup()
-                .addContainerGap(211, Short.MAX_VALUE)
+                .addContainerGap(226, Short.MAX_VALUE)
                 .addComponent(panelBotonesGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelGuardarLayout.createSequentialGroup()
-                    .addComponent(panelContentGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 89, Short.MAX_VALUE)))
+                    .addComponent(panelContentGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(117, 117, 117)))
         );
 
         pnaelContent.add(panelGuardar, "card2");
@@ -337,22 +339,23 @@ public final class VPermiso extends javax.swing.JInternalFrame {
         lblAccion.setText("ubicacion desconocida");
         lblAccion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 170, 255), 1, true));
 
+        lblFCreacion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblFCreacion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblFCreacion.setText("ubicacion desconocida");
+        lblFCreacion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 170, 255), 1, true));
+        lblFCreacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel25.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel25.setText("Fecha Creación:");
+
+        jLabel27.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel27.setText("Fecha Edición:");
+
         lblFEdicion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblFEdicion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblFEdicion.setText("ubicacion desconocida");
         lblFEdicion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 170, 255), 1, true));
         lblFEdicion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jLabel25.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel25.setText("Fecha Edición:");
-
-        jLabel23.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel23.setText("Fecha Creación:");
-
-        lblFCreacion.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lblFCreacion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblFCreacion.setText("ubicacion desconocida");
-        lblFCreacion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 170, 255), 1, true));
 
         javax.swing.GroupLayout panelContentVerLayout = new javax.swing.GroupLayout(panelContentVer);
         panelContentVer.setLayout(panelContentVerLayout);
@@ -362,25 +365,23 @@ public final class VPermiso extends javax.swing.JInternalFrame {
                 .addGap(70, 70, 70)
                 .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelContentVerLayout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblFCreacion, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
-                    .addGroup(panelContentVerLayout.createSequentialGroup()
                         .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblCodigo222)
                             .addComponent(jLabel20))
                         .addGap(31, 31, 31)
                         .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
                             .addComponent(lblCodigo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelContentVerLayout.createSequentialGroup()
                         .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22)
-                            .addComponent(jLabel25))
-                        .addGap(16, 16, 16)
+                            .addComponent(jLabel25)
+                            .addComponent(jLabel27))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblFEdicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblFEdicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblFCreacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblAccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(70, 70, 70))
         );
         panelContentVerLayout.setVerticalGroup(
@@ -400,11 +401,11 @@ public final class VPermiso extends javax.swing.JInternalFrame {
                     .addComponent(lblAccion))
                 .addGap(18, 18, 18)
                 .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel23)
+                    .addComponent(jLabel25)
                     .addComponent(lblFCreacion))
                 .addGap(18, 18, 18)
                 .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
+                    .addComponent(jLabel27)
                     .addComponent(lblFEdicion))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -458,12 +459,12 @@ public final class VPermiso extends javax.swing.JInternalFrame {
         panelVerLayout.setVerticalGroup(
             panelVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVerLayout.createSequentialGroup()
-                .addGap(0, 213, Short.MAX_VALUE)
+                .addGap(0, 228, Short.MAX_VALUE)
                 .addComponent(panelBotonesVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelVerLayout.createSequentialGroup()
                     .addComponent(panelContentVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 80, Short.MAX_VALUE)))
+                    .addGap(0, 95, Short.MAX_VALUE)))
         );
 
         pnaelContent.add(panelVer, "card3");
@@ -474,13 +475,13 @@ public final class VPermiso extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnaelContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 587, Short.MAX_VALUE))
+                .addComponent(pnaelContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 276, Short.MAX_VALUE))
+                .addGap(0, 291, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                     .addGap(47, 47, 47)
@@ -521,13 +522,14 @@ public final class VPermiso extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JLabel lblAccion;
     public javax.swing.JLabel lblCodigo;
     public javax.swing.JLabel lblCodigo1;

@@ -41,7 +41,6 @@ public class VRolListado extends javax.swing.JInternalFrame {
         jPanel7 = new javax.swing.JPanel();
         btnExcel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
         panelTabla = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -365,11 +364,6 @@ public class VRolListado extends javax.swing.JInternalFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Reportes");
 
-        txtId.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
-        txtId.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtId.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtId.setEnabled(false);
-
         javax.swing.GroupLayout panelHeaderLayout = new javax.swing.GroupLayout(panelHeader);
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
@@ -382,9 +376,7 @@ public class VRolListado extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelHeaderLayout.createSequentialGroup()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(139, 139, 139))))
+                        .addGap(139, 832, Short.MAX_VALUE))))
             .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelHeaderLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -396,9 +388,7 @@ public class VRolListado extends javax.swing.JInternalFrame {
             .addGroup(panelHeaderLayout.createSequentialGroup()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 10, Short.MAX_VALUE))
             .addGroup(panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelHeaderLayout.createSequentialGroup()
@@ -591,6 +581,5 @@ public class VRolListado extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panelTabla;
     public javax.swing.JTable table;
     public javax.swing.JTextField txtBuscar;
-    public javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables
 }

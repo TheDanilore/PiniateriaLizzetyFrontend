@@ -265,11 +265,11 @@ public final class VRol extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelContentGuardarLayout.createSequentialGroup()
                         .addComponent(lblCodigo)
                         .addGap(49, 49, 49)
-                        .addComponent(txtId, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelContentGuardarLayout.createSequentialGroup()
+                        .addComponent(txtId))
+                    .addGroup(panelContentGuardarLayout.createSequentialGroup()
                         .addComponent(jLabel19)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)))
                 .addGap(100, 100, 100))
         );
         panelContentGuardarLayout.setVerticalGroup(
@@ -287,7 +287,7 @@ public final class VRol extends javax.swing.JInternalFrame {
                 .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
-                .addGap(15, 15, 15))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelGuardarLayout = new javax.swing.GroupLayout(panelGuardar);

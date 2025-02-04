@@ -9,23 +9,19 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.danilore.piniaterializzety.views.usuario.VUsuarios;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.ListModel;
-import javax.swing.table.DefaultTableModel;
 import org.mindrot.jbcrypt.BCrypt;
 import com.danilore.piniaterializzety.models.usuario.Usuario;
 import java.net.URI;
-import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import com.danilore.piniaterializzety.models.EstadoEnum;
 import com.danilore.piniaterializzety.models.usuario.Rol;
+import com.danilore.piniaterializzety.views.usuario.VUsuario;
 
 /**
  *
@@ -33,7 +29,7 @@ import com.danilore.piniaterializzety.models.usuario.Rol;
  */
 public final class UsuarioController {
 
-    VUsuarios vista = new VUsuarios();
+    VUsuario vista = new VUsuario();
     private static final String BASE_URL = "http://localhost:8080/api/usuarios";
     private static final String BASE_URL_ROLES = "http://localhost:8080/api/roles";
     private List<Rol> rolesCargados = new ArrayList<>(); // Declarar rolesCargados
@@ -48,19 +44,17 @@ public final class UsuarioController {
     private boolean enModoBusqueda = false;
     private String criterioBusqueda = ""; // Criterio de búsqueda actual
 
-    public UsuarioController(VUsuarios v, Usuario usuario) {
+    public UsuarioController(VUsuario v, Usuario usuario) {
         this.vista = v;
-        configurarEventos();
 
         //Deshabilitar los botones
-        this.vista.txtIdUsuario.setVisible(false);
+        this.vista.txtId.setVisible(false);
         this.vista.btnActualizar.setEnabled(false);
 
         // Habilitar botones según permisos
         configurarBotonesSegunPermisos(usuario);
 
         llenarRoles();
-        marcaAgua();
     }
 
     private void configurarBotonesSegunPermisos(Usuario usuario) {
@@ -70,32 +64,6 @@ public final class UsuarioController {
         // Puedes agregar más verificaciones para otros botones si es necesario
     }
 
-    private void configurarEventos() {
-        vista.btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                guardarUsuario();
-            }
-        });
-
-        vista.btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                actualizarUsuario();
-            }
-        });
-
-
-        vista.btnNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nuevoUsuario();
-            }
-        });
-
-
-
-    }
 
     //--------------------------------------------
     private void mostrarRolesSeleccionados(Usuario usuario) {
@@ -149,129 +117,6 @@ public final class UsuarioController {
         }
     }
 
-    //-----------------------  CRUD USUARIO -----------------------
-
-    private void guardarUsuario() {
-        try {
-            if (!camposValidos()) {
-                JOptionPane.showMessageDialog(null, "Debe completar todos los campos.");
-                return;
-            }
-            Usuario usuario = new Usuario();
-            usuario.setNombre(vista.txtNombreUsuario.getText());
-            usuario.setEmail(vista.txtUsernameUsuario.getText());
-            String password = vista.txtContraUsuario.getText();
-
-            if (!validarPassword(password)) {
-                return;
-            }
-            usuario.setPassword(BCrypt.hashpw(password, BCrypt.gensalt()));
-
-            // Obtener roles seleccionados
-            List<String> selectedRoles = vista.jlistRolUser.getSelectedValuesList();
-            List<Rol> roles = selectedRoles.stream()
-                    .map(desc -> rolesCargados.stream()
-                    .filter(rol -> rol.getDescripcion().equals(desc))
-                    .findFirst()
-                    .orElse(null))
-                    .filter(rol -> rol != null)
-                    .toList();
-
-            usuario.setRoles(roles);
-
-            ObjectMapper mapper = new ObjectMapper();
-            String requestBody = mapper.writeValueAsString(usuario);
-
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL))
-                    .header("Content-Type", "application/json")
-                    .POST(HttpRequest.BodyPublishers.ofString(requestBody))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() == 201) {
-                JOptionPane.showMessageDialog(vista, "Usuario guardado con éxito.");
-                limpiarCampos();
-            } else {
-                JOptionPane.showMessageDialog(vista, "Error al guardar usuario. Error: " + response.body());
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(vista, "Error al guardar usuario: " + e.getMessage());
-        }
-    }
-
-    private void actualizarUsuario() {
-        try {
-            if (!camposValidos()) {
-                JOptionPane.showMessageDialog(null, "Debe completar todos los campos.");
-                return;
-            }
-            int id = Integer.parseInt(vista.txtIdUsuario.getText());
-            Usuario usuario = new Usuario();
-            usuario.setNombre(vista.txtNombreUsuario.getText());
-            usuario.setEmail(vista.txtUsernameUsuario.getText());
-            usuario.setPassword(vista.txtContraUsuario.getText());
-
-            // Obtener roles seleccionados
-            List<String> selectedRoles = vista.jlistRolUser.getSelectedValuesList();
-            List<Rol> roles = selectedRoles.stream()
-                    .map(desc -> rolesCargados.stream()
-                    .filter(rol -> rol.getDescripcion().equals(desc))
-                    .findFirst()
-                    .orElse(null))
-                    .filter(rol -> rol != null)
-                    .toList();
-
-            usuario.setRoles(roles);
-
-            ObjectMapper mapper = new ObjectMapper();
-            String requestBody = mapper.writeValueAsString(usuario);
-
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL + "/editar/" + id))
-                    .header("Content-Type", "application/json")
-                    .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() == 200) {
-                JOptionPane.showMessageDialog(vista, "Usuario actualizado con éxito.");
-                limpiarCampos();
-            } else {
-                JOptionPane.showMessageDialog(vista, "Error al actualizar usuario. Error: " + response.body());
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(vista, "Error al actualizar usuario: " + e.getMessage());
-        }
-    }
-
-    public void eliminarUsuario() {
-        try {
-            Long id = Long.valueOf(vista.txtIdUsuario.getText());
-
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL + "/" + id))
-                    .DELETE()
-                    .build();
-
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            if (response.statusCode() == 200) {
-                mostrarMensaje("Usuario eliminado con éxito.");
-                limpiarCampos();
-            } else {
-                mostrarError("Error al eliminar usuario. Error: " + response.body());
-            }
-        } catch (Exception e) {
-            mostrarError("Error inesperado al eliminar usuario: " + e.getMessage());
-        }
-    }
-
     //-------------------------------------------------
     private boolean validarPassword(String password) {
         if (password.length() < 6) {
@@ -285,35 +130,9 @@ public final class UsuarioController {
         return true;
     }
 
-    public void nuevoUsuario() {
-        enModoBusqueda = false; // Desactivar modo búsqueda
-        criterioBusqueda = ""; // Limpiar el criterio de búsqueda
-        paginaActual = 0; // Reiniciar a la primera página
-        limpiarCampos();
-    }
 
-    public void limpiarCampos() {
-        vista.txtIdUsuario.setText("");
-        vista.txtContraUsuario.setText("");
-        vista.txtNombreUsuario.setText("");
-        vista.txtUsernameUsuario.setText("");
-        vista.jlistRolUser.clearSelection(); // Método correcto para limpiar la selección
 
-        // Deshabilitar botones
-        vista.btnActualizar.setEnabled(false);
-    }
-
-    public boolean camposValidos() {
-        return !vista.txtContraUsuario.getText().isEmpty()
-                && !vista.txtNombreUsuario.getText().isEmpty()
-                && !vista.txtUsernameUsuario.getText().isEmpty();
-    }
-
-    public void marcaAgua() {
-        TextPrompt nombreUser = new TextPrompt("Nombres del Usuario", vista.txtNombreUsuario);
-        TextPrompt user = new TextPrompt("Correo", vista.txtUsernameUsuario);
-        TextPrompt contra = new TextPrompt("Contraseña", vista.txtContraUsuario);
-    }
+   
 
     private void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(vista, mensaje, "Información", JOptionPane.INFORMATION_MESSAGE);

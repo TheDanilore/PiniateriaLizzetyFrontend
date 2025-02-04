@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.danilore.piniaterializzety.models.usuario.Permiso;
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -66,7 +68,7 @@ public class RolService {
             } else {
                 LOGGER.log(Level.WARNING, "Error en la solicitud: {0}", response.body());
             }
-        } catch (Exception e) {
+        } catch (IOException | InterruptedException | URISyntaxException e) {
             LOGGER.log(Level.SEVERE, "Error en la solicitud HTTP: {0}", e.getMessage());
         }
         return List.of(); // Devuelve una lista vacía en caso de error

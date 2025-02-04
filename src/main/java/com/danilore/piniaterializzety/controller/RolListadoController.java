@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.danilore.piniaterializzety.controller;
 
 import com.danilore.piniaterializzety.clases.TextPrompt;
@@ -322,6 +318,13 @@ public final class RolListadoController {
                 // Actualizar la información de paginación
                 esUltimaPagina = rootNode.path("last").asBoolean(false);
                 vista.lblPagina.setText("Página: " + (paginaActual + 1));
+                
+                
+                this.vista.btnActualizar.setEnabled(false);
+                this.vista.btnEliminar.setEnabled(false);
+                this.vista.btnVisualizar.setEnabled(false);
+                this.vista.panelBtnDarBaja.setVisible(true);
+                this.vista.btnDarBaja.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(vista, "Error al listar " + palabraPlural + ". Código: " + response.statusCode());
             }
@@ -392,7 +395,7 @@ public final class RolListadoController {
         vistaRol.lblCodigo.setVisible(false);
         vistaRol.txtId.setVisible(false);
 
-        vistaRol.lblTextoEditarOCrearPermiso.setText("REGISTRAR PERMISO");
+        vistaRol.lblTextoEditarOCrearPermiso.setText("REGISTRAR ROL");
         // Activa los botones necesarios para edición
         vistaRol.panelBtnActualizar.setVisible(false);
         vistaRol.panelBtnGuardar.setVisible(true);
@@ -422,13 +425,6 @@ public final class RolListadoController {
         } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(vista, "Error inesperado actualizar " + palabraSingular + ": " + e.getMessage());
         }
-    }
-
-    public void llenarPermisos() {
-        permisosCargados = rolService.cargarPermisos();
-        DefaultListModel<String> listModel = new DefaultListModel<>();
-        permisosCargados.forEach(permiso -> listModel.addElement(permiso.getDescripcion()));
-        vistaRol.jlistPermisosRoles.setModel(listModel);
     }
 
     private void enviarAVistaEdicion(Rol rol) {
@@ -577,7 +573,7 @@ public final class RolListadoController {
             } else {
                 mostrarError("Error al eliminar " + palabraSingular + ". Error: " + response.body());
             }
-        } catch (Exception e) {
+        } catch (IOException | InterruptedException | URISyntaxException e) {
             mostrarError("Error inesperado al eliminar " + palabraSingular + ": " + e.getMessage());
         }
     }
@@ -685,7 +681,7 @@ public final class RolListadoController {
             } else {
                 mostrarError("Error al actualizar " + palabraSingular + ". Error: " + response.body());
             }
-        } catch (Exception e) {
+        } catch (IOException | InterruptedException | NumberFormatException | URISyntaxException e) {
             mostrarError("Error al actualizar " + palabraSingular + ": " + e.getMessage());
         }
     }
@@ -694,6 +690,14 @@ public final class RolListadoController {
         vistaRol.setVisible(false);
         vista.setVisible(true);
         limpiarCampos();
+    }
+    
+    
+    public void llenarPermisos() {
+        permisosCargados = rolService.cargarPermisos();
+        DefaultListModel<String> listModel = new DefaultListModel<>();
+        permisosCargados.forEach(permiso -> listModel.addElement(permiso.getDescripcion()));
+        vistaRol.jlistPermisosRoles.setModel(listModel);
     }
 
     //-----------------------------------------------

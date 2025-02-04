@@ -1,7 +1,6 @@
 package com.danilore.piniaterializzety.models.usuario;
 
 import com.danilore.piniaterializzety.models.EstadoEnum;
-import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

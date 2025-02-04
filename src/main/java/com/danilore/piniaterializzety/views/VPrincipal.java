@@ -5,8 +5,6 @@
 package com.danilore.piniaterializzety.views;
 
 import com.danilore.piniaterializzety.views.persona.VPersona;
-import com.danilore.piniaterializzety.views.usuario.VUsuariosListado;
-import com.danilore.piniaterializzety.views.usuario.VUsuarios;
 import com.danilore.piniaterializzety.views.usuario.VRolListado;
 import com.danilore.piniaterializzety.controller.LoginController;
 import com.danilore.piniaterializzety.controller.PermisoListadoController;
@@ -19,6 +17,8 @@ import com.danilore.piniaterializzety.views.producto.VUnidadMedidaListado;
 import com.danilore.piniaterializzety.views.usuario.VPermiso;
 import com.danilore.piniaterializzety.views.usuario.VPermisoListado;
 import com.danilore.piniaterializzety.views.usuario.VRol;
+import com.danilore.piniaterializzety.views.usuario.VUsuario;
+import com.danilore.piniaterializzety.views.usuario.VUsuarioListado;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -206,14 +206,23 @@ public class VPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        VUsuarios vistaUsuarios = new VUsuarios(); // Instancia para edición
-        VUsuariosListado vistaListado = new VUsuariosListado(); // Instancia para listado
+        VUsuario vistaUsuario = new VUsuario(); // Instancia para edición
+        VUsuarioListado vistaListado = new VUsuarioListado(); // Instancia para listado
 
         // Controlador de listado con referencia a la vista de edición
-        UsuarioListadoController controller = new UsuarioListadoController(vistaListado, vistaUsuarios, usuario);
+        UsuarioListadoController controller = new UsuarioListadoController(vistaListado, vistaUsuario, usuario);
 
+        // Centrar el JInternalFrame dentro del JDesktopPane
+        int x = (escritorio.getWidth() - vistaListado.getWidth()) / 2;
+        int y = (escritorio.getHeight() - vistaListado.getHeight()) / 2;
+        vistaListado.setLocation(x, y);
+        
+        int x2 = (escritorio.getWidth() - vistaUsuario.getWidth()) / 2;
+        int y2 = (escritorio.getHeight() - vistaUsuario.getHeight()) / 2;
+        vistaUsuario.setLocation(x2, y2);
+        
         escritorio.add(vistaListado); // Agrega la vista de listado al escritorio
-        escritorio.add(vistaUsuarios); // Agrega la vista de edición al escritorio
+        escritorio.add(vistaUsuario); // Agrega la vista de edición al escritorio
         vistaListado.setVisible(true); // Mostrar la vista de listado inicialmente
     }//GEN-LAST:event_menuitemGestionUserActionPerformed
 

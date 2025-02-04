@@ -1,11 +1,9 @@
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\clases\Evento.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\clases\TextPrompt.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\controller\LoginController.java
-C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\controller\PermisoController.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\controller\PermisoListadoController.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\controller\PersonaController.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\controller\PersonaListadoController.java
-C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\controller\RolController.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\controller\RolListadoController.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\controller\UnidadMedidaListadoController.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\controller\UsuarioController.java
@@ -40,8 +38,8 @@ C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\j
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\models\usuario\Rol.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\models\usuario\Usuario.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\PiniateriaLizzety.java
-C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\services\PermisoService.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\services\RolService.java
+C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\services\UsuarioService.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\inventario\VColor.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\inventario\VColorListado.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\inventario\VEntradaProductoListado.java
@@ -73,7 +71,7 @@ C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\j
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VPermisos.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VRol.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VRolListado.java
-C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VUsuarios.java
-C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VUsuariosListado.java
+C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VUsuario.java
+C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VUsuarioListado.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\VLogin.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\VPrincipal.java
