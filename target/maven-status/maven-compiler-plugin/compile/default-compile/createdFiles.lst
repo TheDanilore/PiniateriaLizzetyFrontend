@@ -164,6 +164,7 @@ com\danilore\piniaterializzety\views\usuario\VUsuario$3.class
 com\danilore\piniaterializzety\models\inventario\Variacion.class
 com\danilore\piniaterializzety\views\inventario\VLongitudListado.class
 com\danilore\piniaterializzety\views\VPrincipal$8.class
+com\danilore\piniaterializzety\controller\UsuarioListadoController$20.class
 com\danilore\piniaterializzety\views\inventario\VTamano$1.class
 com\danilore\piniaterializzety\models\usuario\Usuario.class
 com\danilore\piniaterializzety\views\persona\VPersona$3.class

@@ -23,6 +23,7 @@ import com.danilore.piniaterializzety.models.usuario.Usuario;
 import com.danilore.piniaterializzety.services.UsuarioService;
 import com.danilore.piniaterializzety.views.usuario.VUsuario;
 import com.danilore.piniaterializzety.views.usuario.VUsuarioListado;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -39,6 +40,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -72,7 +74,7 @@ public final class UsuarioListadoController {
 
     //Paginacion    
     private int paginaActual = 0; // Página actual
-    private final int tamanioPagina = 12; // Tamaño de página fijo
+    private final int tamanioPagina = 30; // Tamaño de página fijo
     private boolean esUltimaPagina = false;
 
     //Busqueda
@@ -218,6 +220,13 @@ public final class UsuarioListadoController {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 limpiarCampos();
+            }
+        });
+
+        vistaUsuario.btnEliminarImagen.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                eliminarAvatar();
             }
         });
 
@@ -547,6 +556,7 @@ public final class UsuarioListadoController {
                 .orElse("Sin roles");
 
         vistaUsuario.lblRoles.setText(rolesDescripcion);
+        vistaUsuario.lblAvatar1.setText(usuario.getAvatar());
         vistaUsuario.lblEstado.setText(usuario.getEstado().name());
 
         // Validar valores nulos y mostrar cadena vacía si es necesario
@@ -715,7 +725,7 @@ public final class UsuarioListadoController {
                 while ((bytesRead = inputStream.read(buffer)) != -1) {
                     outputStream.write(buffer, 0, bytesRead);
                 }
-                
+
                 outputStream.flush();
                 inputStream.close();
                 writer.append("\r\n");
@@ -727,13 +737,23 @@ public final class UsuarioListadoController {
 
             // Obtener respuesta del servidor
             int responseCode = conn.getResponseCode();
+            InputStream inputStream = (responseCode == 200 || responseCode == 201)
+                    ? conn.getInputStream()
+                    : conn.getErrorStream();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line).append("\n");
+            }
+            reader.close();
+
             if (responseCode == 200 || responseCode == 201) {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                String response = reader.readLine();
-                reader.close();
                 mostrarMensaje("Usuario guardado con éxito.");
+                listar();
             } else {
-                mostrarError("Error al guardar usuario: " + responseCode);
+                mostrarError("Error al guardar usuario: " + response.toString());
             }
 
         } catch (Exception e) {
@@ -896,49 +916,17 @@ public final class UsuarioListadoController {
         }
     }
 
-    // Método para subir la imagen al backend
-    public String uploadImage(File file) {
-        if (file == null) {
-            JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna imagen.");
-            return null;
-        }
+    // Método para eliminar la imagen
+    public void eliminarAvatar() {
+        // Restablecer el JLabel a su estado inicial (con texto por defecto)
+        imageLabel.setText("Arrastra una imagen aquí");
+        imageLabel.setIcon(null); // Quitar la imagen
 
-        try {
-            URL url = new URL(BASE_URL_AVATAR);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setDoOutput(true);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=*****");
+        // Limpiar la referencia del archivo seleccionado
+        selectedFile = null;
 
-            OutputStream outputStream = conn.getOutputStream();
-            FileInputStream inputStream = new FileInputStream(file);
-            byte[] buffer = new byte[4096];
-            int bytesRead;
-            while ((bytesRead = inputStream.read(buffer)) != -1) {
-                outputStream.write(buffer, 0, bytesRead);
-            }
-            outputStream.flush();
-            inputStream.close();
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-            String response = reader.readLine();
-            reader.close();
-
-            return response; // Retorna la URL de la imagen
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    // Método para guardar usuario con la imagen
-    public void guardarUsuarioConImagen(Usuario usuario) {
-        String imageUrl = uploadImage(selectedFile);
-        if (imageUrl != null) {
-            usuario.setAvatar(imageUrl);
-            // Llamar al método para guardar usuario en el backend
-        }
+        // Opcionalmente, puedes cambiar el color de fondo o el texto si lo deseas
+        imageLabel.setBackground(Color.LIGHT_GRAY);
     }
 
     //-----------------------------------------------
@@ -950,6 +938,7 @@ public final class UsuarioListadoController {
         vistaUsuario.txtEmail.setText("");
         vistaUsuario.txtPassword.setText("");
         vistaUsuario.jlistRolUser.clearSelection(); // Desmarcar todos los roles
+        eliminarAvatar();
 
         vistaUsuario.lblTextoEditarOCrearPermiso.setText("REGISTRAR USUARIO");
 
