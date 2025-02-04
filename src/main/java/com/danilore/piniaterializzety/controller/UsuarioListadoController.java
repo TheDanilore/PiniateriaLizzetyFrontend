@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.net.URI;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -22,11 +23,31 @@ import com.danilore.piniaterializzety.models.usuario.Usuario;
 import com.danilore.piniaterializzety.services.UsuarioService;
 import com.danilore.piniaterializzety.views.usuario.VUsuario;
 import com.danilore.piniaterializzety.views.usuario.VUsuarioListado;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.HeadlessException;
+import java.awt.Image;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.DnDConstants;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetAdapter;
+import java.awt.dnd.DropTargetDropEvent;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.time.format.DateTimeFormatter;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -38,6 +59,7 @@ public final class UsuarioListadoController {
     private final VUsuarioListado vista;
     private final VUsuario vistaUsuario;
     private static final String BASE_URL = "http://localhost:8080/api/usuarios";
+    private static final String BASE_URL_AVATAR = "http://localhost:8080/api/usuarios/upload-avatar";
     private List<Usuario> usuariosCargados = new ArrayList<>();
     private List<Rol> rolesCargados = new ArrayList<>();
 
@@ -52,6 +74,9 @@ public final class UsuarioListadoController {
     //Busqueda
     private boolean enModoBusqueda = false;
     private String criterioBusqueda = ""; // Criterio de búsqueda actual
+
+    private JLabel imageLabel;
+    private File selectedFile;
 
     public UsuarioListadoController(VUsuarioListado vista, VUsuario vistaUsuario, Usuario usuario) {
         this.vista = vista;
@@ -390,6 +415,7 @@ public final class UsuarioListadoController {
     }
 
     public void nuevo() {
+        seleccionarAvatar();
         llenarRoles();
         //PermisoController permisoGuardarController = new PermisoController(vistaPermiso, vista, usuario);
         // Configurar la vista
@@ -437,6 +463,7 @@ public final class UsuarioListadoController {
 
         //RolController rolController = new RolController(vistaRol, new Usuario());
         // Configurar datos del rol seleccionado en la nueva ventana
+        seleccionarAvatar();
         llenarRoles();
 
         // Configurar la vista de edición con los datos seleccionados
@@ -497,6 +524,10 @@ public final class UsuarioListadoController {
     private void enviarAVistaVisualizacion(Usuario usuario) {
         //PermisoController permisoGuardarController = new PermisoController(vistaPermiso, vista, usuario);
         // Configurar la vista
+        seleccionarAvatar();
+
+        llenarRoles();
+
         vistaUsuario.panelGuardar.setVisible(false);
         vistaUsuario.panelVer.setVisible(true);
 
@@ -618,12 +649,12 @@ public final class UsuarioListadoController {
 
             // Obtener roles seleccionados
             List<String> selectedRoles = vistaUsuario.jlistRolUser.getSelectedValuesList();
-            
-            if(vistaUsuario.jlistRolUser.isSelectionEmpty()){
+
+            if (vistaUsuario.jlistRolUser.isSelectionEmpty()) {
                 mostrarError("Debes seleccionar al menos un Rol");
                 return;
             }
-            
+
             List<Rol> roles = selectedRoles.stream()
                     .map(desc -> rolesCargados.stream()
                     .filter(rol -> rol.getDescripcion().equals(desc))
@@ -654,6 +685,7 @@ public final class UsuarioListadoController {
                 mostrarMensaje(palabraSingular + " guardado con éxito.");
                 limpiarCampos();
                 listar();
+                guardarUsuarioConImagen(usuario);
             } else {
                 mostrarError("Error al guardar " + palabraSingular + ". Error: " + response.body());
                 System.out.println("Error al guardar " + palabraSingular + ". Error: " + response.body());
@@ -685,7 +717,7 @@ public final class UsuarioListadoController {
             }
 
             usuario.setEmail(email);
-            
+
             String password = vistaUsuario.txtPassword.getText().trim();
 
             if (!validarPasswordActualizar(password)) {
@@ -697,12 +729,12 @@ public final class UsuarioListadoController {
             //usuario.setPassword(vistaUsuario.txtPassword.getText().trim());
             // Obtener roles seleccionados
             List<String> selectedRoles = vistaUsuario.jlistRolUser.getSelectedValuesList();
-            
-            if(vistaUsuario.jlistRolUser.isSelectionEmpty()){
+
+            if (vistaUsuario.jlistRolUser.isSelectionEmpty()) {
                 mostrarError("Debes seleccionar al menos un Rol");
                 return;
             }
-            
+
             List<Rol> roles = selectedRoles.stream()
                     .map(desc -> rolesCargados.stream()
                     .filter(rol -> rol.getDescripcion().equals(desc))
@@ -755,6 +787,115 @@ public final class UsuarioListadoController {
         vistaUsuario.jlistRolUser.setModel(listModel);
     }
 
+    //-------------------- IMAGEN ---------------------
+    // Habilitar Drag and Drop
+    public void seleccionarAvatar() {
+
+        imageLabel = vistaUsuario.lblAvatar;
+        imageLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        imageLabel.setOpaque(true);
+        imageLabel.setBackground(Color.LIGHT_GRAY);
+        imageLabel.setPreferredSize(new Dimension(100, 100));
+
+        // Habilitar Drag and Drop
+        new DropTarget(imageLabel, new DropTargetAdapter() {
+            @Override
+            public void drop(DropTargetDropEvent event) {
+                try {
+                    event.acceptDrop(DnDConstants.ACTION_COPY);
+                    Object transferData = event.getTransferable().getTransferData(DataFlavor.javaFileListFlavor);
+
+                    if (transferData instanceof java.util.List) {
+                        java.util.List<File> fileList = (java.util.List<File>) transferData;
+                        if (!fileList.isEmpty()) {
+                            File file = fileList.get(0);
+                            if (isImageFile(file)) {
+                                displayImage(file);
+                                selectedFile = file; // Guardar archivo seleccionado
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Solo se permiten imágenes.", "Error", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                    }
+                    event.dropComplete(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        //add(imageLabel, BorderLayout.CENTER);
+    }
+
+    // Método para verificar si el archivo es una imagen
+    private boolean isImageFile(File file) {
+        String[] validExtensions = {"jpg", "jpeg", "png", "gif"};
+        String fileName = file.getName().toLowerCase();
+        for (String ext : validExtensions) {
+            if (fileName.endsWith(ext)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Método para mostrar la imagen en el JLabel
+    private void displayImage(File file) {
+        try {
+            BufferedImage img = ImageIO.read(file);
+            ImageIcon icon = new ImageIcon(img.getScaledInstance(100, 100, Image.SCALE_SMOOTH));
+            imageLabel.setText(""); // Quitar el texto
+            imageLabel.setIcon(icon);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    // Método para subir la imagen al backend
+    public String uploadImage(File file) {
+        if (file == null) {
+            JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna imagen.");
+            return null;
+        }
+
+        try {    
+            URL url = new URL(BASE_URL_AVATAR);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("POST");
+            conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=*****");
+
+            OutputStream outputStream = conn.getOutputStream();
+            FileInputStream inputStream = new FileInputStream(file);
+            byte[] buffer = new byte[4096];
+            int bytesRead;
+            while ((bytesRead = inputStream.read(buffer)) != -1) {
+                outputStream.write(buffer, 0, bytesRead);
+            }
+            outputStream.flush();
+            inputStream.close();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String response = reader.readLine();
+            reader.close();
+
+            return response; // Retorna la URL de la imagen
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+       // Método para guardar usuario con la imagen
+    public void guardarUsuarioConImagen(Usuario usuario) {
+        String imageUrl = uploadImage(selectedFile);
+        if (imageUrl != null) {
+            usuario.setAvatar(imageUrl);
+            // Llamar al método para guardar usuario en el backend
+        }
+    }
+
     //-----------------------------------------------
     private void limpiarCampos() {
         vistaUsuario.lblCodigo.setVisible(false);
@@ -793,6 +934,7 @@ public final class UsuarioListadoController {
         }
         return true;
     }
+
     private boolean validarPasswordActualizar(String password) {
         if (password.length() >= 1 && password.length() < 6) {
             JOptionPane.showMessageDialog(vistaUsuario, "La contraseña debe tener al menos 6 caracteres.");

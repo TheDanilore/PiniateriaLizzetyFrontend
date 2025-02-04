@@ -42,6 +42,8 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         txtEmail = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        lblAvatar = new javax.swing.JLabel();
         panelVer = new javax.swing.JPanel();
         panelContentVer = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
@@ -61,7 +63,7 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         jLabel31 = new javax.swing.JLabel();
         lblFEdicion = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        lblRoles1 = new javax.swing.JLabel();
+        lblAvatar1 = new javax.swing.JLabel();
         panelBotonesVer = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JLabel();
@@ -295,6 +297,13 @@ public final class VUsuario extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel33.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel33.setText("AVATAR:");
+
+        lblAvatar.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
+        lblAvatar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAvatar.setText("Arrastra una imagen aquí");
+
         javax.swing.GroupLayout panelContentGuardarLayout = new javax.swing.GroupLayout(panelContentGuardar);
         panelContentGuardar.setLayout(panelContentGuardarLayout);
         panelContentGuardarLayout.setHorizontalGroup(
@@ -303,24 +312,31 @@ public final class VUsuario extends javax.swing.JInternalFrame {
                 .addGap(100, 100, 100)
                 .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelContentGuardarLayout.createSequentialGroup()
-                        .addComponent(jLabel29)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPassword))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContentGuardarLayout.createSequentialGroup()
-                        .addComponent(jLabel19)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE))
+                        .addComponent(jLabel33)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelContentGuardarLayout.createSequentialGroup()
                         .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel26)
-                            .addComponent(jLabel28)
-                            .addComponent(lblCodigo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtId)
-                            .addComponent(txtEmail)
-                            .addComponent(txtNombres))))
-                .addGap(100, 100, 100))
+                            .addGroup(panelContentGuardarLayout.createSequentialGroup()
+                                .addComponent(jLabel29)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtPassword))
+                            .addGroup(panelContentGuardarLayout.createSequentialGroup()
+                                .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel26)
+                                    .addComponent(jLabel28)
+                                    .addComponent(lblCodigo))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtId)
+                                    .addComponent(txtEmail)
+                                    .addComponent(txtNombres)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContentGuardarLayout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)))
+                        .addGap(100, 100, 100))))
         );
         panelContentGuardarLayout.setVerticalGroup(
             panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,9 +358,13 @@ public final class VUsuario extends javax.swing.JInternalFrame {
                     .addComponent(jLabel29)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(lblAvatar, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel19)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE))
                 .addGap(15, 15, 15))
         );
 
@@ -444,11 +464,11 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         jLabel32.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel32.setText("Avatar:");
 
-        lblRoles1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lblRoles1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblRoles1.setText("ubicacion desconocida");
-        lblRoles1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 170, 255), 1, true));
-        lblRoles1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblAvatar1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblAvatar1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblAvatar1.setText("ubicacion desconocida");
+        lblAvatar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 170, 255), 1, true));
+        lblAvatar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout panelContentVerLayout = new javax.swing.GroupLayout(panelContentVer);
         panelContentVer.setLayout(panelContentVerLayout);
@@ -486,9 +506,7 @@ public final class VUsuario extends javax.swing.JInternalFrame {
                             .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblRoles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(panelContentVerLayout.createSequentialGroup()
-                                .addComponent(lblRoles1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addComponent(lblAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(70, 70, 70))
         );
         panelContentVerLayout.setVerticalGroup(
@@ -517,7 +535,7 @@ public final class VUsuario extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel32)
-                    .addComponent(lblRoles1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
+                    .addComponent(lblAvatar1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
@@ -670,12 +688,15 @@ public final class VUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JList<String> jlistRolUser;
+    public javax.swing.JLabel lblAvatar;
+    public javax.swing.JLabel lblAvatar1;
     public javax.swing.JLabel lblCodigo;
     public javax.swing.JLabel lblCodigo1;
     private javax.swing.JLabel lblCodigo222;
@@ -686,7 +707,6 @@ public final class VUsuario extends javax.swing.JInternalFrame {
     public javax.swing.JLabel lblNombres;
     public javax.swing.JLabel lblPassword;
     public javax.swing.JLabel lblRoles;
-    public javax.swing.JLabel lblRoles1;
     public javax.swing.JLabel lblTextoCrearOEditar;
     public javax.swing.JLabel lblTextoEditarOCrearPermiso;
     private javax.swing.JPanel panelBotonesGuardar;
