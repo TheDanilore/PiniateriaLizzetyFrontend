@@ -34,7 +34,6 @@ import java.time.format.DateTimeFormatter;
  */
 public final class PermisoListadoController {
 
-    private Usuario usuario;
     private final VPermisoListado vista;
     private final VPermiso vistaPermiso;
     private static final String BASE_URL = "http://localhost:8080/api/permisos";
@@ -63,6 +62,7 @@ public final class PermisoListadoController {
         // Configuración inicial
         this.vista.btnActualizar.setEnabled(false);
         this.vista.btnEliminar.setEnabled(false);
+        this.vista.btnVisualizar.setEnabled(false);
 
         // Habilitar botones según permisos
         configurarBotonesSegunPermisos(usuario);
@@ -114,6 +114,13 @@ public final class PermisoListadoController {
             }
         });
 
+        vista.btnVisualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                visualizar();
+            }
+        });
+
         vista.btnEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -143,18 +150,19 @@ public final class PermisoListadoController {
             }
         });
 
+        ////////////////////////////////////////////////////////////////////////////////
         //Vista Guardar o Editar o Visualizar
         vistaPermiso.btnGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                guardarPermiso();
+                guardarEnVista();
             }
         });
 
         vistaPermiso.btnActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                actualizarPermiso();
+                actualizarEnVista();
             }
         });
 
@@ -166,6 +174,13 @@ public final class PermisoListadoController {
         });
 
         vistaPermiso.btnRegresarListado.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                enviarVistaListado();
+            }
+        });
+        
+        vistaPermiso.btnRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 enviarVistaListado();
@@ -205,6 +220,7 @@ public final class PermisoListadoController {
             // Habilitar botón actualizar siempre que un usuario sea seleccionado
             vista.btnActualizar.setEnabled(true);
             vista.btnEliminar.setEnabled(true);
+            vista.btnVisualizar.setEnabled(true);
         }
     }
 
@@ -272,7 +288,7 @@ public final class PermisoListadoController {
             } else {
                 JOptionPane.showMessageDialog(vista, "Error al listar " + palabraPlural + ". Código: " + response.statusCode());
             }
-        } catch (Exception e) {
+        } catch (HeadlessException | IOException | InterruptedException | URISyntaxException e) {
             JOptionPane.showMessageDialog(vista, "Error al listar " + palabraPlural + ": " + e.getMessage());
         }
     }
@@ -322,6 +338,7 @@ public final class PermisoListadoController {
 
                 this.vista.btnActualizar.setEnabled(false);
                 this.vista.btnEliminar.setEnabled(false);
+                this.vista.btnVisualizar.setEnabled(false);
             } else {
                 JOptionPane.showMessageDialog(vista, "Error al listar " + palabraPlural + ". Error: " + response.body());
             }
@@ -355,14 +372,14 @@ public final class PermisoListadoController {
             Permiso permisoSeleccionado = obtenerPermisoDesdeFila(filaSeleccionada);
 
             if (permisoSeleccionado == null) {
-                JOptionPane.showMessageDialog(vista, "No se pudo obtener el " + palabraSingular + " seleccionado.");
+                JOptionPane.showMessageDialog(vista, "No se pudo obtener " + palabraSingular + " seleccionado.");
                 return;
             }
 
             // Enviar el rol seleccionado a la vista de edición
             enviarAVistaEdicion(permisoSeleccionado);
 
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(vista, "Error inesperado actualizar " + palabraSingular + ": " + e.getMessage());
         }
     }
@@ -370,6 +387,9 @@ public final class PermisoListadoController {
     private void enviarAVistaEdicion(Permiso permiso) {
         //PermisoController permisoGuardarController = new PermisoController(vistaPermiso, vista, usuario);
         // Configurar la vista
+        vistaPermiso.panelVer.setVisible(false);
+        vistaPermiso.panelGuardar.setVisible(true);
+
         vistaPermiso.lblCodigo.setVisible(true);
         vistaPermiso.txtId.setText(String.valueOf(permiso.getId()));
         vistaPermiso.txtId.setVisible(true);
@@ -386,6 +406,51 @@ public final class PermisoListadoController {
         vistaPermiso.setVisible(true); // Muestra la vista de edición
         vista.setVisible(false);
 
+    }
+
+    public void visualizar() {
+        try {
+            // Obtener la fila seleccionada en la tabla
+            int filaSeleccionada = vista.table.getSelectedRow();
+
+            Permiso permisoSeleccionado = obtenerPermisoDesdeFila(filaSeleccionada);
+
+            if (permisoSeleccionado == null) {
+                JOptionPane.showMessageDialog(vista, "No se pudo obtener el " + palabraSingular + " seleccionado.");
+                return;
+            }
+
+            // Enviar el rol seleccionado a la vista de edición
+            enviarAVistaVisualizacion(permisoSeleccionado);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(vista, "Error inesperado visualizar " + palabraSingular + ": " + e.getMessage());
+        }
+    }
+
+    private void enviarAVistaVisualizacion(Permiso permiso) {
+        //PermisoController permisoGuardarController = new PermisoController(vistaPermiso, vista, usuario);
+        // Configurar la vista
+        vistaPermiso.panelGuardar.setVisible(false);
+        vistaPermiso.panelVer.setVisible(true);
+
+        vistaPermiso.lblCodigo1.setText(String.valueOf(permiso.getId()));
+        vistaPermiso.lblDescripcion.setText(permiso.getDescripcion());
+        vistaPermiso.lblAccion.setText(permiso.getAccion());
+
+        // Validar valores nulos y mostrar cadena vacía si es necesario
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+        String createdAt = (permiso.getCreatedAt() != null) ? permiso.getCreatedAt().format(formatter) : "";
+        String updatedAt = (permiso.getUpdatedAt() != null) ? permiso.getUpdatedAt().format(formatter) : "";
+
+        vistaPermiso.lblFCreacion.setText(createdAt);
+        vistaPermiso.lblFEdicion.setText(updatedAt);
+
+        vistaPermiso.lblTextoEditarOCrearPermiso.setText("PERMISO");
+
+        // Ocultar la vista de listado y mostrar la de edición
+        vistaPermiso.setVisible(true); // Muestra la vista de edición
+        vista.setVisible(false);
     }
 
     public void eliminar() {
@@ -418,7 +483,7 @@ public final class PermisoListadoController {
 
     ///////////////////////////////////////////////////////
     //Metodos de vista Guardar, editar o ver
-    public void guardarPermiso() {
+    public void guardarEnVista() {
         try {
             if (!camposValidos()) {
                 JOptionPane.showMessageDialog(null, "Debe completar todos los campos.");
@@ -442,19 +507,19 @@ public final class PermisoListadoController {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() == 200 || response.statusCode() == 201) {
-                mostrarMensaje("Permiso guardado con éxito.");
+                mostrarMensaje(palabraSingular + " guardado con éxito.");
                 limpiarCampos();
                 listar();
             } else {
-                mostrarError("Error al guardar permiso. Error: " + response.body());
+                mostrarError("Error al guardar " + palabraSingular + ". Error: " + response.body());
             }
 
         } catch (Exception e) {
-            mostrarError("Error al guardar el permiso: " + e.getMessage());
+            mostrarError("Error al guardar " + palabraSingular + ": " + e.getMessage());
         }
     }
 
-    public void actualizarPermiso() {
+    public void actualizarEnVista() {
         try {
             if (!camposValidos()) {
                 mostrarMensaje("Debe completar todos los campos.");
@@ -480,15 +545,15 @@ public final class PermisoListadoController {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() == 200) {
-                mostrarMensaje("Permiso actualizado con éxito.");
+                mostrarMensaje(palabraSingular + " actualizado con éxito.");
                 limpiarCampos();
                 enviarVistaListado();
                 listar();
             } else {
-                mostrarError("Error al actualizar permiso. Error: " + response.body());
+                mostrarError("Error al actualizar " + palabraSingular + ". Error: " + response.body());
             }
         } catch (Exception e) {
-            mostrarError("Error al actualizar el permiso: " + e.getMessage());
+            mostrarError("Error al actualizar el " + palabraSingular + ": " + e.getMessage());
         }
     }
 

@@ -6,7 +6,6 @@ package com.danilore.piniaterializzety.controller;
 
 import com.danilore.piniaterializzety.clases.TextPrompt;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.danilore.piniaterializzety.views.usuario.VRoles;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -19,7 +18,8 @@ import com.danilore.piniaterializzety.models.usuario.Permiso;
 import com.danilore.piniaterializzety.models.usuario.Rol;
 import com.danilore.piniaterializzety.models.usuario.Usuario;
 import com.danilore.piniaterializzety.services.RolService;
-import com.danilore.piniaterializzety.views.usuario.VRolesListado;
+import com.danilore.piniaterializzety.views.usuario.VRol;
+import com.danilore.piniaterializzety.views.usuario.VRolListado;
 
 /**
  *
@@ -28,19 +28,18 @@ import com.danilore.piniaterializzety.views.usuario.VRolesListado;
 public final class RolController {
 
     RolService rolService = new RolService();
-    VRolesListado vistaRolesListado = new VRolesListado();
-    private final VRoles vista;
+    VRolListado vistaRolesListado = new VRolListado();
+    private final VRol vista;
     private static final String BASE_URL = "http://localhost:8080/api/roles";
-    private static final String BASE_URL_Permisos = "http://localhost:8080/api/permisos";
     private List<Permiso> permisosCargados = new ArrayList<>();
 
-    public RolController(VRoles v, Usuario usuario) {
+    public RolController(VRol v, Usuario usuario) {
         this.vista = v;
         configurarEventos();
 
         // Configuración inicial
         this.vista.lblCodigo.setVisible(false);
-        this.vista.txtIdRolesUsuario.setVisible(false);
+        this.vista.txtId.setVisible(false);
         this.vista.btnActualizar.setVisible(false);
 
         // Habilitar botones según permisos
@@ -74,12 +73,7 @@ public final class RolController {
             }
         });
 
-        vista.btnNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nuevoRol();
-            }
-        });
+
 
     }
 
@@ -143,7 +137,7 @@ public final class RolController {
     public void actualizar() {
         try {
 
-            int id = Integer.parseInt(vista.txtIdRolesUsuario.getText());
+            int id = Integer.parseInt(vista.txtId.getText());
             Rol rol = new Rol();
             rol.setDescripcion(vista.txtDescripcion.getText());
 
@@ -188,13 +182,13 @@ public final class RolController {
         this.vista.btnGuardar.setVisible(true);
         this.vista.lblCodigo.setVisible(false);
         this.vista.lblTextoCrearOEditar.setText("REGISTRAR NUEVO ROL");
-        this.vista.txtIdRolesUsuario.setVisible(false);
+        this.vista.txtId.setVisible(false);
         this.vista.btnActualizar.setVisible(false);
         limpiarCampos();
     }
 
     public void limpiarCampos() {
-        vista.txtIdRolesUsuario.setText("");
+        vista.txtId.setText("");
         vista.txtDescripcion.setText("");
         vista.jlistPermisosRoles.clearSelection(); // Desmarcar todos los permisos
 

@@ -77,6 +77,8 @@ public class Permiso {
                 + "id=" + id
                 + ", descripcion='" + descripcion + '\''
                 + ", accion=" + accion
+                + ", createdAt=" + createdAt
+                + ", updatedAt=" + updatedAt
                 + '}';
     }
 

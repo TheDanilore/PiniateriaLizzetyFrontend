@@ -48,7 +48,6 @@ C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\j
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\inventario\VInventarioListado.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\inventario\VLongitud.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\inventario\VLongitudListado.java
-C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\inventario\VMovimientoListado.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\inventario\VMovimientoListado1.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\inventario\VSalidaProductoListado.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\inventario\VTamano.java
@@ -72,8 +71,8 @@ C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\j
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VPermiso.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VPermisoListado.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VPermisos.java
-C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VRoles.java
-C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VRolesListado.java
+C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VRol.java
+C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VRolListado.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VUsuarios.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\usuario\VUsuariosListado.java
 C:\Users\SHIRLEY\Documents\NetBeansProjects\PiniateriaLizzetyFrontend\src\main\java\com\danilore\piniaterializzety\views\VLogin.java

@@ -7,10 +7,8 @@ package com.danilore.piniaterializzety.views;
 import com.danilore.piniaterializzety.views.persona.VPersona;
 import com.danilore.piniaterializzety.views.usuario.VUsuariosListado;
 import com.danilore.piniaterializzety.views.usuario.VUsuarios;
-import com.danilore.piniaterializzety.views.usuario.VRolesListado;
-import com.danilore.piniaterializzety.views.usuario.VRoles;
+import com.danilore.piniaterializzety.views.usuario.VRolListado;
 import com.danilore.piniaterializzety.controller.LoginController;
-import com.danilore.piniaterializzety.controller.PermisoController;
 import com.danilore.piniaterializzety.controller.PermisoListadoController;
 import com.danilore.piniaterializzety.controller.PersonaController;
 import com.danilore.piniaterializzety.controller.RolListadoController;
@@ -20,6 +18,7 @@ import com.danilore.piniaterializzety.models.usuario.Usuario;
 import com.danilore.piniaterializzety.views.producto.VUnidadMedidaListado;
 import com.danilore.piniaterializzety.views.usuario.VPermiso;
 import com.danilore.piniaterializzety.views.usuario.VPermisoListado;
+import com.danilore.piniaterializzety.views.usuario.VRol;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -245,14 +244,23 @@ public class VPrincipal extends javax.swing.JFrame {
             return;
         }
 
-        VRoles vistaRoles = new VRoles(); // Instancia para edición
-        VRolesListado vistaListado = new VRolesListado(); // Instancia para listado
+        VRol vistaRol = new VRol(); // Instancia para edición
+        VRolListado vistaListado = new VRolListado(); // Instancia para listado
 
         // Controlador de listado con referencia a la vista de edición
-        RolListadoController controller = new RolListadoController(vistaListado, vistaRoles, usuario);
+        RolListadoController controller = new RolListadoController(vistaListado, vistaRol, usuario);
+        
+        // Centrar el JInternalFrame dentro del JDesktopPane
+        int x = (escritorio.getWidth() - vistaListado.getWidth()) / 2;
+        int y = (escritorio.getHeight() - vistaListado.getHeight()) / 2;
+        vistaListado.setLocation(x, y);
+        
+        int x2 = (escritorio.getWidth() - vistaRol.getWidth()) / 2;
+        int y2 = (escritorio.getHeight() - vistaRol.getHeight()) / 2;
+        vistaRol.setLocation(x2, y2);
 
         escritorio.add(vistaListado); // Agrega la vista de listado al escritorio
-        escritorio.add(vistaRoles); // Agrega la vista de edición al escritorio
+        escritorio.add(vistaRol); // Agrega la vista de edición al escritorio
         vistaListado.setVisible(true); // Mostrar la vista de listado inicialmente
     }//GEN-LAST:event_menuitemGestionRolesActionPerformed
 
