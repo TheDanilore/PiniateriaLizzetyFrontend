@@ -137,6 +137,7 @@ com\danilore\piniaterializzety\views\inventario\VTamanoListado$2.class
 com\danilore\piniaterializzety\views\usuario\VUsuarioListado$1.class
 com\danilore\piniaterializzety\views\producto\VProductoListado$1.class
 com\danilore\piniaterializzety\views\usuario\VUsuarioListado.class
+com\danilore\piniaterializzety\clases\HashGenerator.class
 com\danilore\piniaterializzety\views\inventario\VColorListado$3.class
 com\danilore\piniaterializzety\views\usuario\VRolListado$3.class
 com\danilore\piniaterializzety\views\inventario\VInventarioListado$1.class

@@ -402,11 +402,11 @@ public class VUsuarioListado extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Código", "Nombres", "Correo", "Contraseña", "Roles", "Avatar", "Estado"
+                "Código", "Nombres", "Correo", "Roles", "Avatar", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

@@ -65,7 +65,6 @@ public final class UsuarioListadoController {
     private final VUsuarioListado vista;
     private final VUsuario vistaUsuario;
     private static final String BASE_URL = "http://localhost:8080/api/usuarios";
-    private static final String BASE_URL_AVATAR = "http://localhost:8080/api/usuarios/upload-avatar";
     private List<Usuario> usuariosCargados = new ArrayList<>();
     private List<Rol> rolesCargados = new ArrayList<>();
 
@@ -345,7 +344,6 @@ public final class UsuarioListadoController {
                         usuario.getId(),
                         usuario.getNombre(),
                         usuario.getEmail(),
-                        usuario.getPassword(),
                         rolesDescripcion,
                         usuario.getAvatar(),
                         usuario.getEstado().name()
@@ -404,7 +402,6 @@ public final class UsuarioListadoController {
                         usuario.getId(),
                         usuario.getNombre(),
                         usuario.getEmail(),
-                        usuario.getPassword(),
                         rolesDescripcion,
                         usuario.getAvatar(),
                         usuario.getEstado().name()
@@ -537,8 +534,6 @@ public final class UsuarioListadoController {
     private void enviarAVistaVisualizacion(Usuario usuario) {
         //PermisoController permisoGuardarController = new PermisoController(vistaPermiso, vista, usuario);
         // Configurar la vista
-        seleccionarAvatar();
-
         llenarRoles();
 
         vistaUsuario.panelGuardar.setVisible(false);
@@ -546,8 +541,7 @@ public final class UsuarioListadoController {
 
         vistaUsuario.lblCodigo1.setText(String.valueOf(usuario.getId()));
         vistaUsuario.lblNombres.setText(usuario.getNombre());
-        vistaUsuario.lblCorreo.setText(usuario.getEmail());
-        vistaUsuario.lblPassword.setText(usuario.getPassword());
+        vistaUsuario.lblEmail.setText(usuario.getEmail());
 
         // Obtener las descripciones de los roles como una sola cadena
         String rolesDescripcion = usuario.getRoles().stream()
@@ -556,7 +550,22 @@ public final class UsuarioListadoController {
                 .orElse("Sin roles");
 
         vistaUsuario.lblRoles.setText(rolesDescripcion);
-        vistaUsuario.lblAvatar1.setText(usuario.getAvatar());
+
+        // Mostrar la imagen si existe
+        String avatarUrl = usuario.getAvatar();
+        if (avatarUrl != null && !avatarUrl.isEmpty()) {
+            try {
+                // Crear URL completa de la imagen
+                URL imageUrl = new URL("http://localhost:8080" + avatarUrl); // Suponiendo que el backend se ejecuta en localhost:8080
+                BufferedImage img = ImageIO.read(imageUrl);  // Cargar la imagen
+                ImageIcon icon = new ImageIcon(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH));
+                vistaUsuario.lblAvatar1.setIcon(icon); // Mostrar la imagen en el JLabel
+            } catch (Exception e) {
+                e.printStackTrace();
+                vistaUsuario.lblAvatar1.setText("Imagen no disponible"); // Mostrar mensaje si hay error
+            }
+        }
+
         vistaUsuario.lblEstado.setText(usuario.getEstado().name());
 
         // Validar valores nulos y mostrar cadena vacía si es necesario

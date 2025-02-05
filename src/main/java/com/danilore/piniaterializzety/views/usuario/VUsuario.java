@@ -15,7 +15,7 @@ public final class VUsuario extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         lblTextoCrearOEditar = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jScrollPane3 = new javax.swing.JScrollPane();
         jPanel1 = new javax.swing.JPanel();
         panelHeader = new javax.swing.JPanel();
         lblTextoEditarOCrearPermiso = new javax.swing.JLabel();
@@ -51,14 +51,8 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         panelContentVer = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         lblCodigo222 = new javax.swing.JLabel();
-        lblCodigo1 = new javax.swing.JLabel();
-        lblNombres = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        lblCorreo = new javax.swing.JLabel();
-        lblRoles = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
-        lblPassword = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
         lblFCreacion = new javax.swing.JLabel();
@@ -67,6 +61,11 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         lblFEdicion = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         lblAvatar1 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        lblRoles = new javax.swing.JTextArea();
+        lblCodigo1 = new javax.swing.JTextField();
+        lblNombres = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JTextField();
         panelBotonesVer = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         btnRegresar = new javax.swing.JLabel();
@@ -82,11 +81,11 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Registro");
 
-        jScrollPane2.setBorder(null);
-
         jPanel1.setBackground(new java.awt.Color(236, 233, 233));
+        jPanel1.setPreferredSize(new java.awt.Dimension(495, 591));
 
         panelHeader.setBackground(new java.awt.Color(49, 168, 250));
+        panelHeader.setPreferredSize(new java.awt.Dimension(613, 46));
 
         lblTextoEditarOCrearPermiso.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lblTextoEditarOCrearPermiso.setForeground(new java.awt.Color(255, 255, 255));
@@ -98,7 +97,7 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         panelHeader.setLayout(panelHeaderLayout);
         panelHeaderLayout.setHorizontalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTextoEditarOCrearPermiso, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
+            .addComponent(lblTextoEditarOCrearPermiso, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
         );
         panelHeaderLayout.setVerticalGroup(
             panelHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,13 +216,13 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         panelBotonesGuardarLayout.setHorizontalGroup(
             panelBotonesGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBotonesGuardarLayout.createSequentialGroup()
-                .addContainerGap(115, Short.MAX_VALUE)
+                .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(cardGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         panelBotonesGuardarLayout.setVerticalGroup(
             panelBotonesGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,7 +332,7 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         panelContentGuardarLayout.setHorizontalGroup(
             panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelContentGuardarLayout.createSequentialGroup()
-                .addGap(100, 100, 100)
+                .addGap(50, 50, 50)
                 .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelContentGuardarLayout.createSequentialGroup()
                         .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -352,17 +351,18 @@ public final class VUsuario extends javax.swing.JInternalFrame {
                                     .addComponent(txtEmail)
                                     .addComponent(txtNombres)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContentGuardarLayout.createSequentialGroup()
+                                .addGap(5, 5, 5)
                                 .addComponent(jLabel19)
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane1)))
-                        .addGap(88, 88, 88))
+                        .addGap(50, 50, 50))
                     .addGroup(panelContentGuardarLayout.createSequentialGroup()
                         .addComponent(jLabel33)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblAvatar, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                        .addComponent(lblAvatar)
                         .addGap(18, 18, 18)
                         .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(169, 169, 169))))
+                        .addContainerGap(139, Short.MAX_VALUE))))
         );
         panelContentGuardarLayout.setVerticalGroup(
             panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,17 +387,14 @@ public final class VUsuario extends javax.swing.JInternalFrame {
                     .addGroup(panelContentGuardarLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelContentGuardarLayout.createSequentialGroup()
-                                .addComponent(jLabel33)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(lblAvatar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18))
+                            .addComponent(jLabel33)
+                            .addComponent(lblAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelContentGuardarLayout.createSequentialGroup()
                         .addGap(54, 54, 54)
-                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)))
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
                 .addGroup(panelContentGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
                     .addComponent(jLabel19))
                 .addGap(15, 15, 15))
         );
@@ -408,20 +405,17 @@ public final class VUsuario extends javax.swing.JInternalFrame {
             panelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelBotonesGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(panelGuardarLayout.createSequentialGroup()
-                    .addComponent(panelContentGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap()))
+                .addComponent(panelContentGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelGuardarLayout.setVerticalGroup(
             panelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGuardarLayout.createSequentialGroup()
-                .addContainerGap(413, Short.MAX_VALUE)
-                .addComponent(panelBotonesGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addContainerGap(480, Short.MAX_VALUE)
+                .addComponent(panelBotonesGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelGuardarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelGuardarLayout.createSequentialGroup()
-                    .addComponent(panelContentGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 143, Short.MAX_VALUE)))
+                    .addComponent(panelContentGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(117, 117, 117)))
         );
 
         pnaelContent.add(panelGuardar, "card2");
@@ -429,6 +423,7 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         panelVer.setBackground(new java.awt.Color(236, 233, 233));
 
         panelContentVer.setBackground(new java.awt.Color(236, 233, 233));
+        panelContentVer.setPreferredSize(new java.awt.Dimension(495, 455));
 
         jLabel20.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel20.setText("Nombres:");
@@ -436,40 +431,11 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         lblCodigo222.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblCodigo222.setText("Código:");
 
-        lblCodigo1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lblCodigo1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblCodigo1.setText("0000000000");
-        lblCodigo1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 170, 255), 1, true));
-
-        lblNombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lblNombres.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNombres.setText("ubicacion desconocida");
-        lblNombres.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 170, 255), 1, true));
-
         jLabel22.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel22.setText("Correo:");
 
-        lblCorreo.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lblCorreo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblCorreo.setText("ubicacion desconocida");
-        lblCorreo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 170, 255), 1, true));
-
-        lblRoles.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lblRoles.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblRoles.setText("ubicacion desconocida");
-        lblRoles.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 170, 255), 1, true));
-        lblRoles.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jLabel25.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel25.setText("Roles:");
-
         jLabel23.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel23.setText("Contraseña:");
-
-        lblPassword.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblPassword.setText("ubicacion desconocida");
-        lblPassword.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 170, 255), 1, true));
+        jLabel23.setText("Roles:");
 
         jLabel27.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel27.setText("Estado:");
@@ -503,78 +469,99 @@ public final class VUsuario extends javax.swing.JInternalFrame {
 
         lblAvatar1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         lblAvatar1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblAvatar1.setText("Sin Imagen");
         lblAvatar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(76, 170, 255), 1, true));
         lblAvatar1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        lblAvatar1.setMaximumSize(new java.awt.Dimension(200, 200));
+
+        lblRoles.setEditable(false);
+        lblRoles.setBackground(new java.awt.Color(236, 233, 233));
+        lblRoles.setColumns(20);
+        lblRoles.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblRoles.setLineWrap(true);
+        lblRoles.setRows(5);
+        lblRoles.setBorder(null);
+        jScrollPane4.setViewportView(lblRoles);
+
+        lblCodigo1.setEditable(false);
+        lblCodigo1.setBackground(new java.awt.Color(236, 233, 233));
+        lblCodigo1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblCodigo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblCodigo1.setOpaque(true);
+
+        lblNombres.setEditable(false);
+        lblNombres.setBackground(new java.awt.Color(236, 233, 233));
+        lblNombres.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblNombres.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblNombres.setOpaque(true);
+
+        lblEmail.setEditable(false);
+        lblEmail.setBackground(new java.awt.Color(236, 233, 233));
+        lblEmail.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        lblEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblEmail.setOpaque(true);
 
         javax.swing.GroupLayout panelContentVerLayout = new javax.swing.GroupLayout(panelContentVer);
         panelContentVer.setLayout(panelContentVerLayout);
         panelContentVerLayout.setHorizontalGroup(
             panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelContentVerLayout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(64, 64, 64)
                 .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContentVerLayout.createSequentialGroup()
                         .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblCodigo222)
-                            .addComponent(jLabel20))
+                            .addComponent(jLabel20)
+                            .addComponent(lblCodigo222))
                         .addGap(50, 50, 50)
                         .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombres, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
-                            .addComponent(lblCodigo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(lblCodigo1)
+                            .addComponent(lblNombres)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelContentVerLayout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblEmail)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)))
+                    .addGroup(panelContentVerLayout.createSequentialGroup()
+                        .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel22)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel23))
+                        .addGap(66, 66, 66)
+                        .addComponent(lblAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelContentVerLayout.createSequentialGroup()
                         .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel30)
                             .addComponent(jLabel31)
                             .addComponent(jLabel27))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblFCreacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblFCreacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblFEdicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(panelContentVerLayout.createSequentialGroup()
-                        .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel22)
-                            .addComponent(jLabel25)
-                            .addComponent(jLabel23)
-                            .addComponent(jLabel32))
-                        .addGap(34, 34, 34)
-                        .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblRoles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(panelContentVerLayout.createSequentialGroup()
-                                .addComponent(lblAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 281, Short.MAX_VALUE)))))
-                .addGap(70, 70, 70))
+                            .addComponent(lblFEdicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(50, 50, 50))
         );
         panelContentVerLayout.setVerticalGroup(
             panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelContentVerLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCodigo1)
-                    .addComponent(lblCodigo222))
+                    .addComponent(lblCodigo222)
+                    .addComponent(lblCodigo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblNombres, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel20))
-                .addGap(18, 18, 18)
+                .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(lblNombres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(lblCorreo))
+                    .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel23)
-                    .addComponent(lblPassword))
-                .addGap(18, 18, 18)
-                .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel25)
-                    .addComponent(lblRoles))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel32)
-                    .addComponent(lblAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(panelContentVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27)
@@ -604,7 +591,7 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+            .addComponent(btnRegresar, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -618,33 +605,37 @@ public final class VUsuario extends javax.swing.JInternalFrame {
             .addGroup(panelBotonesVerLayout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(68, 68, 68))
+                .addGap(72, 72, 72))
         );
         panelBotonesVerLayout.setVerticalGroup(
             panelBotonesVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBotonesVerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout panelVerLayout = new javax.swing.GroupLayout(panelVer);
         panelVer.setLayout(panelVerLayout);
         panelVerLayout.setHorizontalGroup(
             panelVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBotonesVer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelVerLayout.createSequentialGroup()
+                .addComponent(panelBotonesVer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
             .addGroup(panelVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(panelContentVer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(panelVerLayout.createSequentialGroup()
+                    .addComponent(panelContentVer, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
+                    .addGap(0, 0, 0)))
         );
         panelVerLayout.setVerticalGroup(
             panelVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVerLayout.createSequentialGroup()
-                .addGap(0, 446, Short.MAX_VALUE)
+                .addGap(0, 481, Short.MAX_VALUE)
                 .addComponent(panelBotonesVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelVerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(panelVerLayout.createSequentialGroup()
-                    .addComponent(panelContentVer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 84, Short.MAX_VALUE)))
+                    .addComponent(panelContentVer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(91, 91, 91)))
         );
 
         pnaelContent.add(panelVer, "card3");
@@ -653,32 +644,32 @@ public final class VUsuario extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelHeader, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(pnaelContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnaelContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(panelHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 511, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addGap(47, 47, 47)
+                    .addGap(45, 45, 45)
                     .addComponent(pnaelContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        jScrollPane2.setViewportView(jPanel1);
+        jScrollPane3.setViewportView(jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+            .addComponent(jScrollPane3)
         );
 
         pack();
@@ -722,7 +713,6 @@ public final class VUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -737,20 +727,20 @@ public final class VUsuario extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     public javax.swing.JList<String> jlistRolUser;
     public javax.swing.JLabel lblAvatar;
     public javax.swing.JLabel lblAvatar1;
     public javax.swing.JLabel lblCodigo;
-    public javax.swing.JLabel lblCodigo1;
+    public javax.swing.JTextField lblCodigo1;
     private javax.swing.JLabel lblCodigo222;
-    public javax.swing.JLabel lblCorreo;
+    public javax.swing.JTextField lblEmail;
     public javax.swing.JLabel lblEstado;
     public javax.swing.JLabel lblFCreacion;
     public javax.swing.JLabel lblFEdicion;
-    public javax.swing.JLabel lblNombres;
-    public javax.swing.JLabel lblPassword;
-    public javax.swing.JLabel lblRoles;
+    public javax.swing.JTextField lblNombres;
+    public javax.swing.JTextArea lblRoles;
     public javax.swing.JLabel lblTextoCrearOEditar;
     public javax.swing.JLabel lblTextoEditarOCrearPermiso;
     private javax.swing.JPanel panelBotonesGuardar;
