@@ -778,7 +778,7 @@ public final class UsuarioListadoController {
                 return;
             }
 
-            int id = Integer.parseInt(vistaUsuario.txtId.getText());
+            Long id = Long.parseLong(vistaUsuario.txtId.getText());
             Usuario usuario = new Usuario();
             usuario.setId(Long.valueOf(vistaUsuario.txtId.getText()));
             usuario.setNombre(vistaUsuario.txtNombres.getText().trim());
@@ -819,32 +819,85 @@ public final class UsuarioListadoController {
 
             usuario.setRoles(roles);
 
-            // Configurar ObjectMapper con soporte para Java 8 Time API
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.registerModule(new JavaTimeModule()); // Agregar soporte para LocalDateTime
+            enviarUsuarioConImagenEditar(usuario, selectedFile, id);
 
-            // Convertir objeto a JSON
-            String requestBody = mapper.writeValueAsString(usuario);
+        } catch (HeadlessException e) {
+            mostrarError("Error (Catch) al editar " + palabraSingular + ": " + e.getMessage());
+            System.out.println("Error (Catch) al editar " + palabraSingular + ": " + e.getMessage());
+        }
+    }
 
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(new URI(BASE_URL + "/editar/" + id))
-                    .header("Content-Type", "application/json")
-                    .PUT(HttpRequest.BodyPublishers.ofString(requestBody))
-                    .build();
+    private void enviarUsuarioConImagenEditar(Usuario usuario, File file, Long id) {
+        try {
+            String boundary = "*****";
+            URL url = new URL(BASE_URL + "/editar/" + id);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setDoOutput(true);
+            conn.setRequestMethod("PUT");
+            conn.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + boundary);
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            OutputStream outputStream = conn.getOutputStream();
+            PrintWriter writer = new PrintWriter(new OutputStreamWriter(outputStream, "UTF-8"), true);
 
-            if (response.statusCode() == 200) {
-                mostrarMensaje(palabraSingular + " actualizado con éxito.");
-                limpiarCampos();
-                enviarVistaListado();
-                listar();
-            } else {
-                mostrarError("Error al actualizar " + palabraSingular + ". Error: " + response.body());
+            // Configurar ObjectMapper con soporte para LocalDateTime
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.registerModule(new JavaTimeModule()); // Permite serializar LocalDateTime
+            objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS); // Opcional: Formato legible ISO 8601
+
+            // Convertir usuario a JSON
+            String usuarioJson = objectMapper.writeValueAsString(usuario);
+
+            writer.append("--").append(boundary).append("\r\n");
+            writer.append("Content-Disposition: form-data; name=\"usuario\"\r\n\r\n");
+            writer.append(usuarioJson).append("\r\n");
+
+            // Enviar archivo (si existe)
+            if (file != null) {
+                writer.append("--").append(boundary).append("\r\n");
+                writer.append("Content-Disposition: form-data; name=\"file\"; filename=\"").append(file.getName()).append("\"\r\n");
+                writer.append("Content-Type: ").append(Files.probeContentType(file.toPath())).append("\r\n\r\n");
+                writer.flush();
+
+                FileInputStream inputStream = new FileInputStream(file);
+                byte[] buffer = new byte[4096];
+                int bytesRead;
+                while ((bytesRead = inputStream.read(buffer)) != -1) {
+                    outputStream.write(buffer, 0, bytesRead);
+                }
+
+                outputStream.flush();
+                inputStream.close();
+                writer.append("\r\n");
             }
-        } catch (IOException | InterruptedException | NumberFormatException | URISyntaxException e) {
-            mostrarError("Error al actualizar " + palabraSingular + ": " + e.getMessage());
+
+            writer.append("--").append(boundary).append("--").append("\r\n");
+            writer.flush();
+            writer.close();
+
+            // Obtener respuesta del servidor
+            int responseCode = conn.getResponseCode();
+            InputStream inputStream = (responseCode == 200 || responseCode == 201)
+                    ? conn.getInputStream()
+                    : conn.getErrorStream();
+
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder response = new StringBuilder();
+            String line;
+            while ((line = reader.readLine()) != null) {
+                response.append(line).append("\n");
+            }
+            reader.close();
+
+            if (responseCode == 200 || responseCode == 201) {
+                mostrarMensaje("Usuario editar con éxito.");
+                listar();
+                enviarVistaListado();
+            } else {
+                mostrarError("Error al editar usuario: " + response.toString());
+            }
+
+        } catch (IOException e) {
+            mostrarError("Error al enviar usuario: " + e.getMessage());
         }
     }
 
